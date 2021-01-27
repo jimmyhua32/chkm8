@@ -1,11 +1,14 @@
 # chkm8
 
 Andrew Chan - atchan24@uw.edu
+
 Isaac Kim - isaack4@uw.edu
+
 Jimmy Hua - jimhua32@uw.edu
+
 Joshua Maza - jsm209@uw.edu
 
-Project Statement: How might young adults between the ages of 18-25 in America utilize a gamified approach to mental wellness so that they can improve their mental well-being?
+Problem Statement: How might young adults between the ages of 18-25 in America utilize a gamified approach to mental wellness so that they can improve their mental well-being?
 
 ## Why does the problem matter?
 

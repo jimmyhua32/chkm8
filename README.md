@@ -18,3 +18,9 @@ The need for a resource that those aged 18-25 can find free, easy-to-use, fun, a
 ## What is the impact of inaction?
 
 As time continues, the percentage and number of teens experience mental issues continues to increase. What this tells us is that current resources that exist are not contributing to the problem for those in the age range of 18-25. By not acting on this problem, we can expect to continually see this increase in percentages and numbers.
+
+
+## How to contribute to codebase
+* Commit changes to individual dev branches.
+* Merge personal dev branches to development branch when satisfied with changes and they are ready for testing.
+* Merge development to master branch when changes pass approval and testing.

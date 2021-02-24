@@ -15,6 +15,12 @@ export default function ProfileScreen( {navigation} ) {
                     navigation.navigate('Home');
                 }}
             />
+            <Button
+                title="to reflection"
+                onPress={() => {
+                    navigation.navigate('Reflection');
+                }}
+            />
         </View>
     );
 }

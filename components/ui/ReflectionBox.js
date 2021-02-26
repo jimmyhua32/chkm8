@@ -1,5 +1,6 @@
 import React from "react";
 import {View, Text, Button, StyleSheet, TextInput} from 'react-native';
+import * as storage from '../../Storage';
 
 export default function ReflectionBox() {
 
@@ -21,9 +22,31 @@ export default function ReflectionBox() {
                 autoCompleteType
             />
             <Button
+                title="See all reflections (debugging purposes, remove later)"
+                onPress={async () => {
+                    await console.log("Reflections submitted already:");
+                    await storage.get('reflectionData').then(results => console.log(results));
+                }}
+            />
+            <Button
                 title="I'm Done!"
-                onPress={() => {
+                onPress={async () => {
                     console.log("Reflection submitted");
+                    let currentReflections = await storage.get('reflectionData');
+                    if (!currentReflections) {
+                        storage.set('reflectionData', {
+                            reflections: [
+                                {
+                                    entry: reflectionText,
+                                    datetime: "current date"
+                                }
+                            ]
+                        })
+                    } else {
+                        let updatedReflections = currentReflections.reflections;
+                        updatedReflections.push({entry: reflectionText, datetime: "currentDate"});
+                        storage.set('reflectionData', updatedReflections);
+                    }
                 }}
             />
         </View>

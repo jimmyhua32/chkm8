@@ -8,7 +8,7 @@ export default function HomeScreen( {navigation} ) {
     return (
         <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
             <View style={{alignSelf: 'flex-start'}}>
-                <Button 
+                <Button
                     title="Options"
                 />
             </View>
@@ -46,6 +46,7 @@ const GameView = () => {
 
 
 {/* Setup for push notifications */}
+/*
 registerForPushNotificationsAsync = async () => {
     if (Constants.isDevice) {
       const { status: existingStatus } = await Notifications.getPermissionsAsync();
@@ -73,3 +74,5 @@ registerForPushNotificationsAsync = async () => {
       });
     }
 };
+
+ */

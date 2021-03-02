@@ -1,19 +1,21 @@
 import { useLinkProps } from "@react-navigation/native";
 import React from "react";
-import {View, Text, Button, StyleSheet, Image} from 'react-native';
-import Constants from 'expo-constants';
-import * as Notifications from 'expo-notifications';
+import {View, Text, Button, StyleSheet, Image, ImageBackground} from 'react-native';
+// import Constants from 'expo-constants';
+// import * as Notifications from 'expo-notifications';
+
+const assetsRoot = '../../assets/';
 
 export default function HomeScreen( {navigation} ) {
     return (
-        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+        <View style={{position: 'relative', flex: 1, alignItems: 'center', justifyContent: 'center'}}>
             <View style={{alignSelf: 'flex-start'}}>
                 <Button
                     title="Options"
                 />
             </View>
             <GameView/>
-            <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'flex-end', marginBottom: '15%'}}>
+            <View style={styles.buttonBar}>
                 <MenuButton name="Profile" screen="Profile" nav={navigation}/>
                 <MenuButton name="Reflect" screen="Reflection" nav={navigation}/>
                 <MenuButton name="Customize" screen="Customize" nav={navigation}/>
@@ -24,7 +26,7 @@ export default function HomeScreen( {navigation} ) {
 
 const MenuButton = (props) => {
     return (
-        <Button
+        <Button style = {styles.menuButton}
             title={props.name}
             onPress={() => {
                 props.nav.navigate(props.screen);
@@ -37,15 +39,56 @@ const GameView = () => {
     return (
         <View>
             {/* not sure if image works for gif */}
-            <Image id='Background'/>
-            <Image id='Foreground'/>
-            <Image id='Character'/>
+            <View styles={styles.backgroundContainer}>
+                <Image styles={styles.background} source={require(assetsRoot + 'day.png')}/>
+            </View>
+            <View styles={styles.groundContainer}>
+                <Image styles={styles.foreground} source={require(assetsRoot + 'ground.png')}/>
+            </View>
+            <View styles={styles.characterContainer}>
+                <Image styles={styles.character} source={require(assetsRoot + 'blob-back.png')}/>
+            </View>
         </View>
     )
 };
 
+const styles = StyleSheet.create({
+    menuButton: {
+        backgroundColor: '#008CBA',
+        position: 'absolute'
+    },
+    buttonBar: {
+        flex: 1, 
+        flexDirection: 'row', 
+        justifyContent: 'center', 
+        alignItems: 'flex-end', 
+        marginBottom: '15%'
+    },
+    backgroundContainer: {
+        position: 'absolute',
+        height: '75%'
+    },
+    background: {
+        position: 'relative'
+    },
+    groundContainer: {
+        flex: 1,
+        position: 'absolute',
+        justifyContent: 'center'
+    },
+    foreground: {
+        position: 'relative'
+    },
+    characterContainer: {
+        flex: 1,
+        position: 'relative',
+        justifyContent: 'center'
+    },
+    character: {
+        opacity: 0.5
+    }
+});
 
-{/* Setup for push notifications */}
 /*
 registerForPushNotificationsAsync = async () => {
     if (Constants.isDevice) {

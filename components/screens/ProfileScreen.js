@@ -1,5 +1,7 @@
 import React from "react";
 import {View, Text, Button, StyleSheet} from 'react-native';
+import { ScrollView } from "react-native-gesture-handler";
+import {get} from '../../Storage.js';
 
 export default function ProfileScreen( {navigation} ) {
     return (
@@ -9,6 +11,7 @@ export default function ProfileScreen( {navigation} ) {
                 This is the profile screen. Hopefully we can have some sexy data here but for
                 now we have a boring paragraph :(
             </Text>
+            <ReflectionLog/>
             <Button
                 title="to home"
                 onPress={() => {
@@ -23,6 +26,19 @@ export default function ProfileScreen( {navigation} ) {
             />
         </View>
     );
+}
+
+const ReflectionLog = () => {
+    let json = get("key");
+    if (json == null) {
+        console.log("JSON for reflections is null");
+        return;
+    }
+    return (
+        <ScrollView>
+            {/* first figure out how to retrieve/store reflections */}
+        </ScrollView>
+    )
 }
 
 const styles = StyleSheet.create({

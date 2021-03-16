@@ -10,6 +10,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from './components/screens/HomeScreen';
 import ProfileScreen from './components/screens/ProfileScreen';
 import ReflectionScreen from './components/screens/ReflectionScreen';
+import ReflectionSearchScreen from "./components/screens/ReflectionSearchScreen";
 
 export default function App() {
 
@@ -21,6 +22,7 @@ export default function App() {
               <Stack.Screen name='Home' component={HomeScreen} />
               <Stack.Screen name='Profile' component={ProfileScreen} />
               <Stack.Screen name='Reflection' component={ReflectionScreen} />
+              <Stack.Screen name='ReflectionSearch' component={ReflectionSearchScreen} />
           </Stack.Navigator>
       </NavigationContainer>
 

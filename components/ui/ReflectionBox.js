@@ -1,10 +1,34 @@
-import React from "react";
+import React, {useState} from "react";
 import {View, Text, Button, StyleSheet, TextInput} from 'react-native';
 import * as storage from '../../Storage';
 
 export default function ReflectionBox() {
 
-    const [reflectionText, onChangeReflectionText] = React.useState('What\'s on your mind?');
+    const [reflectionText, onChangeReflectionText] = useState('What\'s on your mind?');
+
+    async function viewAllReflections() {
+        await console.log("Reflections submitted already:");
+        await storage.get('reflectionData').then(results => console.log(results));
+    }
+
+    async function submitReflection() {
+        console.log("Reflection submitted");
+        let currentReflections = await storage.get('reflectionData');
+        if (!currentReflections.reflections) {
+            await storage.set('reflectionData', {
+                reflections: [
+                    {
+                        entry: reflectionText,
+                        datetime: "current date"
+                    }
+                ]
+            })
+        } else {
+            let updatedReflections = currentReflections.reflections;
+            updatedReflections.push({entry: reflectionText, datetime: "currentDate"});
+            await storage.set('reflectionData', {reflections: updatedReflections});
+        }
+    }
 
     return (
         <View style={styles.reflectionView}>
@@ -23,31 +47,11 @@ export default function ReflectionBox() {
             />
             <Button
                 title="See all reflections (debugging purposes, remove later)"
-                onPress={async () => {
-                    await console.log("Reflections submitted already:");
-                    await storage.get('reflectionData').then(results => console.log(results));
-                }}
+                onPress={viewAllReflections}
             />
             <Button
                 title="I'm Done!"
-                onPress={async () => {
-                    console.log("Reflection submitted");
-                    let currentReflections = await storage.get('reflectionData');
-                    if (!currentReflections) {
-                        storage.set('reflectionData', {
-                            reflections: [
-                                {
-                                    entry: reflectionText,
-                                    datetime: "current date"
-                                }
-                            ]
-                        })
-                    } else {
-                        let updatedReflections = currentReflections.reflections;
-                        updatedReflections.push({entry: reflectionText, datetime: "currentDate"});
-                        storage.set('reflectionData', updatedReflections);
-                    }
-                }}
+                onPress={submitReflection}
             />
         </View>
     );

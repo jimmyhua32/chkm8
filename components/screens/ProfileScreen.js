@@ -1,9 +1,19 @@
-import React from "react";
+import React, {useState} from "react";
+import { useFocusEffect } from '@react-navigation/native';
 import {View, Text, Button, StyleSheet} from 'react-native';
-import { ScrollView } from "react-native-gesture-handler";
-import {get} from '../../Storage.js';
+import * as storage from '../../Storage';
 
 export default function ProfileScreen( {navigation} ) {
+
+    const [reflectionCount, setReflectionCount] = useState(0);
+
+    useFocusEffect(() => {
+        storage.get('reflectionData').then((results) => {
+            setReflectionCount(results.reflections.length);
+        });
+    });
+
+
     return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <Text style={styles.title}>Profile Screen</Text>
@@ -11,7 +21,10 @@ export default function ProfileScreen( {navigation} ) {
                 This is the profile screen. Hopefully we can have some sexy data here but for
                 now we have a boring paragraph :(
             </Text>
-            <ReflectionLog/>
+
+            <Text>Total Reflections: {reflectionCount} Reflections</Text>
+            <Text>Seeds: {reflectionCount * 100} Seeds</Text>
+
             <Button
                 title="to home"
                 onPress={() => {
@@ -22,6 +35,12 @@ export default function ProfileScreen( {navigation} ) {
                 title="to reflection"
                 onPress={() => {
                     navigation.navigate('Reflection');
+                }}
+            />
+            <Button
+                title="View Past Reflections"
+                onPress={() => {
+                    navigation.navigate('ReflectionSearch');
                 }}
             />
         </View>

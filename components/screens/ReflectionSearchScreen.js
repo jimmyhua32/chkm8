@@ -15,7 +15,7 @@ export default function ReflectionSearchScreen( {navigation} ) {
         });
     });
 
-    const reflectionPreviews = reflections.map(item => <ReflectionPreview date={item.datetime} body={item.entry}/>);
+    const reflectionPreviews = reflections.map(item => <ReflectionPreview date={item.datetime} body={item.entry} nav={navigation}/>);
 
     return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>

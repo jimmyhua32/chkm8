@@ -5,13 +5,18 @@ import ReflectionBox from '../ui/ReflectionBox';
 
 export default function ReflectionScreen( {navigation} ) {
     return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <View style={styles.previewContainer}>
             <ReflectionBox />
         </View>
     );
 }
 
 const styles = StyleSheet.create({
+    previewContainer: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
     title: {
         fontSize: 30,
         fontWeight: 'bold',

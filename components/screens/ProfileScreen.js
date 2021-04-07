@@ -9,7 +9,9 @@ export default function ProfileScreen( {navigation} ) {
 
     useFocusEffect(() => {
         storage.get('reflectionData').then((results) => {
-            setReflectionCount(results.reflections.length);
+            if (results) {
+                setReflectionCount(results.reflections.length);
+            }
         });
     });
 

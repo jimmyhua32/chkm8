@@ -14,7 +14,7 @@ export default function ReflectionBox() {
     async function submitReflection() {
         console.log("Reflection submitted");
         let currentReflections = await storage.get('reflectionData');
-        if (!currentReflections.reflections) {
+        if (!currentReflections) {
             await storage.set('reflectionData', {
                 reflections: [
                     {

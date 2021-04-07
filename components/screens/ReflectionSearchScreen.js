@@ -11,7 +11,9 @@ export default function ReflectionSearchScreen( {navigation} ) {
 
     useFocusEffect(() => {
         storage.get('reflectionData').then((results) => {
-            setReflections(results.reflections);
+            if (results) {
+                setReflections(results.reflections);
+            }
         });
     });
 

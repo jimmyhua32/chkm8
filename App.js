@@ -11,6 +11,7 @@ import HomeScreen from './components/screens/HomeScreen';
 import ProfileScreen from './components/screens/ProfileScreen';
 import ReflectionScreen from './components/screens/ReflectionScreen';
 import ReflectionSearchScreen from "./components/screens/ReflectionSearchScreen";
+import ReflectionReadScreen from './components/screens/ReflectionReadScreen';
 
 export default function App() {
 
@@ -23,6 +24,7 @@ export default function App() {
               <Stack.Screen name='Profile' component={ProfileScreen} />
               <Stack.Screen name='Reflection' component={ReflectionScreen} />
               <Stack.Screen name='ReflectionSearch' component={ReflectionSearchScreen} />
+              <Stack.Screen name='ReflectionReadScreen' component={ReflectionReadScreen} />
           </Stack.Navigator>
       </NavigationContainer>
 

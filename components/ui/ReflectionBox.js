@@ -12,20 +12,19 @@ export default function ReflectionBox() {
     }
 
     async function submitReflection() {
-        console.log("Reflection submitted");
         let currentReflections = await storage.get('reflectionData');
-        if (!currentReflections.reflections) {
+        if (!currentReflections) {
             await storage.set('reflectionData', {
                 reflections: [
                     {
                         entry: reflectionText,
-                        datetime: "current date"
+                        datetime: Date.now(),
                     }
                 ]
             })
         } else {
             let updatedReflections = currentReflections.reflections;
-            updatedReflections.push({entry: reflectionText, datetime: "currentDate"});
+            updatedReflections.push({entry: reflectionText, datetime: Date.now()});
             await storage.set('reflectionData', {reflections: updatedReflections});
         }
     }

@@ -12,7 +12,8 @@ reflectionData
 playerData
 | Key   |          Type            | Value |
 | :------------- | :----------:         | :----------:         |
-|  seeds         | Number   | Seeds
+|  seeds         | Number   | Seeds |
+|  accessories        | Array   | IDs of unlocked accessories |
 
 
 ### Other Data Structures
@@ -23,6 +24,14 @@ reflection
 |  entry   | String  | reflection entry
 |  datetime   | Number  | date time of submitted reflection
 |  mood   | String  | mood name
+
+accessory
+| Key   |          Type            | Value |
+| :------------- | :----------:         | :----------:         |
+|  name   | String  | name of accessory
+|  description   | String  | description for accessory
+|  cost  | Number  | cost of accessory
+|  image  | String  | filepath to accessory image
 
 
 ## Project Logistics

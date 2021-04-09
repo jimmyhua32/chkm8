@@ -28,10 +28,11 @@ reflection
 accessory
 | Key   |          Type            | Value |
 | :------------- | :----------:         | :----------:         |
+|  id   | Number  | ID for accessory 
 |  name   | String  | name of accessory
 |  description   | String  | description for accessory
 |  cost  | Number  | cost of accessory
-|  image  | String  | filepath to accessory image
+|  image  | String  | file path to accessory image
 
 
 ## Project Logistics

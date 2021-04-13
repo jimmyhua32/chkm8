@@ -1,10 +1,13 @@
 import React, {useState} from "react";
 import {View, Text, Button, StyleSheet, TextInput} from 'react-native';
+import MoodButton from './custom/MoodButton';
 import * as storage from '../../Storage';
 
 export default function ReflectionBox() {
 
     const [reflectionText, onChangeReflectionText] = useState('What\'s on your mind?');
+
+    const [reflectionMood, onChangeReflectionMood] = useState('Normal');
 
     async function viewAllReflections() {
         await console.log("Reflections submitted already:");
@@ -19,19 +22,32 @@ export default function ReflectionBox() {
                     {
                         entry: reflectionText,
                         datetime: Date.now(),
+                        mood: reflectionMood,
                     }
                 ]
             })
         } else {
             let updatedReflections = currentReflections.reflections;
-            updatedReflections.push({entry: reflectionText, datetime: Date.now()});
+            updatedReflections.push({entry: reflectionText, datetime: Date.now(), mood: reflectionMood});
             await storage.set('reflectionData', {reflections: updatedReflections});
         }
     }
 
     return (
         <View style={styles.reflectionView}>
-            <Text style={styles.title}>Let's take a break and reflect...</Text>
+            <Text style={styles.title}>Hey there, what's on your mind?</Text>
+            <Text style={styles.p1}>
+                How do you feel?
+            </Text>
+            <View style={styles.moodButtonBox}>
+                <MoodButton title="1" onPress={() => {onChangeReflectionMood("1")}}/>
+                <MoodButton title="2" onPress={() => {onChangeReflectionMood("2")}}/>
+                <MoodButton title="3" onPress={() => {onChangeReflectionMood("3")}}/>
+                <MoodButton title="4" onPress={() => {onChangeReflectionMood("4")}}/>
+                <MoodButton title="5" onPress={() => {onChangeReflectionMood("5")}}/>
+            </View>
+
+
             <Text style={styles.p1}>
                 How was your day?
             </Text>
@@ -78,5 +94,12 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         margin: 25,
         padding: 10,
+    },
+    moodButtonBox: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
+        width: 150
     }
 });

@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {View, Text, Button, StyleSheet, TextInput} from 'react-native';
 import MoodButton from './custom/MoodButton';
+import WidePillButton from "./custom/WidePillButton";
 import * as storage from '../../Storage';
 
 export default function ReflectionBox() {
@@ -35,39 +36,37 @@ export default function ReflectionBox() {
 
     return (
         <View style={styles.reflectionView}>
-            <Text style={styles.title}>Hey there, what's on your mind?</Text>
-            <Text style={styles.p1}>
-                How do you feel?
-            </Text>
+            <Text style={[styles.title, styles.titlePrompt]}>Hey there, what's on your mind?</Text>
             <View style={styles.moodButtonBox}>
+                {/*
                 <MoodButton title="1" onPress={() => {onChangeReflectionMood("1")}}/>
                 <MoodButton title="2" onPress={() => {onChangeReflectionMood("2")}}/>
                 <MoodButton title="3" onPress={() => {onChangeReflectionMood("3")}}/>
                 <MoodButton title="4" onPress={() => {onChangeReflectionMood("4")}}/>
                 <MoodButton title="5" onPress={() => {onChangeReflectionMood("5")}}/>
+                */}
+            </View>
+            <View style={styles.whiteBackground}>
+                <TextInput
+                    style={styles.reflectionBox}
+                    onChangeText={text => onChangeReflectionText(text)}
+                    value={reflectionText}
+                    multiline
+                    numberOfLines={10}
+                    autoCapitalize
+                    autoCompleteType
+                />
+                <WidePillButton
+                    title="Done"
+                    onPress={submitReflection}
+                />
             </View>
 
-
-            <Text style={styles.p1}>
-                How was your day?
-            </Text>
-            <TextInput
-                style={styles.reflectionBox}
-                onChangeText={text => onChangeReflectionText(text)}
-                value={reflectionText}
-                multiline
-                numberOfLines={10}
-                autoCapitalize
-                autoCompleteType
-            />
             <Button
                 title="See all reflections (debugging purposes, remove later)"
                 onPress={viewAllReflections}
             />
-            <Button
-                title="I'm Done!"
-                onPress={submitReflection}
-            />
+
         </View>
     );
 }
@@ -76,13 +75,27 @@ const styles = StyleSheet.create({
     reflectionView: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        backgroundColor: '#BBD9F8',
+        width: '100%',
+    },
+    whiteBackground: {
+        backgroundColor: '#fff',
+        borderTopLeftRadius: 20,
+        borderTopRightRadius: 20,
+        width: '100%',
     },
     title: {
-        fontSize: 30,
-        fontWeight: 'bold',
+        fontSize: 24,
         textAlign: 'center',
-        paddingBottom: 25,
+        fontFamily: 'Montserrat Alternates',
+        color: '#80A2C5',
+    },
+    titlePrompt: {
+        width: 300,
+        height: 'auto',
+        paddingBottom: 15,
+        fontWeight: 600,
     },
     p1: {
         fontSize: 18,
@@ -90,10 +103,11 @@ const styles = StyleSheet.create({
     reflectionBox: {
         height: 400,
         width: 300,
-        borderColor: 'gray',
-        borderWidth: 1,
-        margin: 25,
+        borderWidth: 0,
+        margin: 'auto',
         padding: 10,
+        outlineWidth: 0,
+        fontFamily: 'Montserrat Alternates',
     },
     moodButtonBox: {
         display: 'flex',

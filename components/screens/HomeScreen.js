@@ -14,11 +14,17 @@ export default function HomeScreen( {navigation} ) {
                     title="Options"
                 />
             </View>
-            <GameView/>
+            
             <View style={styles.buttonBar}>
                 <MenuButton name="Profile" screen="Profile" nav={navigation}/>
+                <MenuButton name="Accessories" screen="Accessories" nav={navigation}/>
+                <Button style = {styles.menuButton}
+                    title="Rest"
+                    onPress={() => {
+                        // toggle reflect
+                    }}
+                />
                 <MenuButton name="Reflect" screen="Reflection" nav={navigation}/>
-                <MenuButton name="Customize" screen="Customize" nav={navigation}/>
             </View>
         </View>
     );

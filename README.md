@@ -1,5 +1,41 @@
 # chkm8
 
+
+## Data Structures
+### AsyncStorage Data Structures
+
+reflectionData
+| Key |        Type | Value              |
+| :------------- | :----------:         | :----------:         |
+|  reflections   | Array  | reflection objects
+
+playerData
+| Key   |          Type            | Value |
+| :------------- | :----------:         | :----------:         |
+|  seeds         | Number   | Seeds |
+|  accessories        | Array   | IDs of unlocked accessories |
+
+
+### Other Data Structures
+
+reflection
+| Key   |          Type            | Value |
+| :------------- | :----------:         | :----------:         |
+|  entry   | String  | reflection entry
+|  datetime   | Number  | date time of submitted reflection
+|  mood   | String  | mood name
+
+accessory
+| Key   |          Type            | Value |
+| :------------- | :----------:         | :----------:         |
+|  id   | Number  | ID for accessory 
+|  name   | String  | name of accessory
+|  description   | String  | description for accessory
+|  cost  | Number  | cost of accessory
+|  image  | String  | file path to accessory image
+
+
+## Project Logistics
 ### How to set up local environment
 * Clone repo down onto your own machine
 * Run 'npm install' at the root directory
@@ -7,7 +43,6 @@
 Expo is a framework/platform that allows us to quickly test a React Native app on all devices.
 * From the Metro Bundler webpage, you can open the app in a webpage, simulated phone environnment, or download the Expo 
   app on your phone and scan the QR code to run it.
-
 
 
 ### How to contribute to codebase

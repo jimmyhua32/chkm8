@@ -3,6 +3,7 @@ import {View, Text, Button, StyleSheet, TextInput} from 'react-native';
 import MoodButton from './custom/MoodButton';
 import WidePillButton from "./custom/WidePillButton";
 import * as storage from '../../Storage';
+import { useFonts } from 'expo-font'; 
 
 export default function ReflectionBox() {
 
@@ -95,7 +96,7 @@ const styles = StyleSheet.create({
         width: 300,
         height: 'auto',
         paddingBottom: 15,
-        fontWeight: 600,
+        fontWeight: '600',
     },
     p1: {
         fontSize: 18,
@@ -106,8 +107,8 @@ const styles = StyleSheet.create({
         borderWidth: 0,
         margin: 'auto',
         padding: 10,
-        outlineWidth: 0,
-        fontFamily: 'Montserrat Alternates',
+        //outlineWidth: 0,
+        fontFamily: 'Montserrat-Alternates',
     },
     moodButtonBox: {
         display: 'flex',

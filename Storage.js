@@ -18,4 +18,13 @@ export const get = async (key) => {
     }
 }
 
+export const getOrDefault = async (key, other) => {
+    try {
+        const jsonValue = await AsyncStorage.getItem(key)
+        return jsonValue != null ? JSON.parse(jsonValue) : other
+    } catch(e) {
+        console.log(e);
+    }
+}
+
 

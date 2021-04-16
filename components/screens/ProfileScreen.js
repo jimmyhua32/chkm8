@@ -45,8 +45,27 @@ export default function ProfileScreen( {navigation} ) {
                     navigation.navigate('ReflectionSearch');
                 }}
             />
+            <Button
+                title="Accessories"
+                onPress={() => {
+                    navigation.navigate('Accessories');
+                }}
+            />
         </View>
     );
+}
+
+const ReflectionLog = () => {
+    let json = get("key");
+    if (json == null) {
+        console.log("JSON for reflections is null");
+        return;
+    }
+    return (
+        <ScrollView>
+            {/* first figure out how to retrieve/store reflections */}
+        </ScrollView>
+    )
 }
 
 const styles = StyleSheet.create({

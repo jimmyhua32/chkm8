@@ -3,7 +3,6 @@ import {View, Text, Button, StyleSheet, TextInput} from 'react-native';
 import MoodButton from './custom/MoodButton';
 import WidePillButton from "./custom/WidePillButton";
 import * as storage from '../../Storage';
-import { useFonts } from 'expo-font'; 
 
 export default function ReflectionBox() {
 

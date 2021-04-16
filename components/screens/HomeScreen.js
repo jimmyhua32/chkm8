@@ -1,10 +1,14 @@
-import React from "react";
+import React, {useState} from "react";
 import {View, Text, Button, StyleSheet, Image, ImageBackground, TouchableOpacity} from 'react-native';
 
 const assetsRoot = '../../assets/';
 
+
 export default function HomeScreen( {navigation} ) {
-    let reflect = false;
+    let on = require(assetsRoot + 'reflect.png');
+    let off = require(assetsRoot + 'reflect-off.png');
+    const [reflect, toggleReflect] = useState(false);
+    const [reflectImg, changeImg] = useState(reflect ? on : off);
     return (
         <View style={styles.screenView}>
             {/*
@@ -22,19 +26,23 @@ export default function HomeScreen( {navigation} ) {
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.menuButton} title="Rest"
                         onPress={() => {
-                            reflect = !reflect;
+                            toggleReflect(!reflect);
+                            changeImg(reflect ? on : off);
+                            console.log(reflect);
+                            console.log(reflectImg);
                         }
                     }>
                         <Image source={require(assetsRoot + "rest.png")}/>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.menuButton} title="Reflect"
                         onPress={() => {
+                            console.log(reflect);
                             if (reflect) {
                                 navigation.navigate("Reflection");
                             }
                         }
                     }>
-                        <Image source={require(assetsRoot + "reflect.png")}/>
+                        <Image source={reflectImg}/>
                     </TouchableOpacity>
                 </View>
             </ImageBackground>

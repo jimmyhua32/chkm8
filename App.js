@@ -1,11 +1,11 @@
-import './fonts.css';
-
 import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
 import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { useFonts } from 'expo-font';
+
 
 
 // Screens
@@ -21,7 +21,10 @@ export default function App() {
 
     const Stack = createStackNavigator();
 
-  return (
+    // returns a boolean
+    useFonts({'Montserrat-Alternates': require('./assets/fonts/MontserratAlternates-Medium.ttf')});
+
+    return (
       <NavigationContainer>
           <Stack.Navigator initialRouteName='Home'>
               <Stack.Screen name='Home' component={HomeScreen} />

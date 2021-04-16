@@ -45,6 +45,12 @@ export default function ProfileScreen( {navigation} ) {
                     navigation.navigate('ReflectionSearch');
                 }}
             />
+            <Button
+                title="Accessories"
+                onPress={() => {
+                    navigation.navigate('Accessories');
+                }}
+            />
         </View>
     );
 }

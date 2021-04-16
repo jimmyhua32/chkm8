@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#009688",
         borderRadius: 25,
         padding: 10,
-        display: 'inline-block'
+        //display: 'inline-block'
     },
     appButtonText: {
         fontSize: 16,

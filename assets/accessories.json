@@ -4,15 +4,37 @@
             "id" : 1,
             "name" :  "Test 1",
             "description" : "This is a test",
-            "cost" : 50,
-            "image" : "../../assets/blob-front.png"
+            "cost" : 50
         },
         {
             "id" : 2,
             "name" : "Test 2",
             "description" : "This is another test",
-            "cost" : 200,
-            "image" : "../../assets/blob-back.png"
+            "cost" : 200
+        },
+        {
+            "id" : 3,
+            "name" : "Test 3",
+            "description" : "ha",
+            "cost" : 15
+        },
+        {
+            "id" : 4,
+            "name" : "Test 4",
+            "description" : "boo",
+            "cost" : 20
+        },
+        {
+            "id" : 5,
+            "name" : "Test 5",
+            "description" : "more tests?",
+            "cost" : 100
+        },
+        {
+            "id" : 6,
+            "name" : "Test 6",
+            "description" : "ermagerhd",
+            "cost" : 0
         }
     ]
 }

@@ -35,12 +35,12 @@ const IdvCosmetic = (props) => {
 // React Native requires all images to be declared explictly
 // Key is id, Value is img path
 const images = {
-    1 : require("../../assets/blob-front.png"),
-    2 : require("../../assets/blob-back.png"),
-    3 : require("../../assets/blob-front.png"),
-    4 : require("../../assets/blob-back.png"),
-    5 : require("../../assets/blob-front.png"),
-    6 : require("../../assets/blob-back.png")
+    1 : require("../../assets/01.png"),
+    2 : require("../../assets/02.png"),
+    3 : require("../../assets/03.png"),
+    4 : require("../../assets/04.png"),
+    5 : require("../../assets/05.png"),
+    6 : require("../../assets/blob-front.png")
 };
 
 const styles = StyleSheet.create({

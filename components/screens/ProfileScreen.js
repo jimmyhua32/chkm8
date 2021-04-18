@@ -7,11 +7,17 @@ import * as images from '../../Images';
 export default function ProfileScreen( {navigation} ) {
 
     const [reflectionCount, setReflectionCount] = useState(0);
+    const [seeds, setSeeds] = useState(0);
 
     useFocusEffect(() => {
         storage.get('reflectionData').then((results) => {
             if (results) {
                 setReflectionCount(results.reflections.length);
+            }
+        });
+        storage.get('seeds').then((results) => {
+            if (results) {
+                setSeeds(results);
             }
         });
     });
@@ -27,7 +33,7 @@ export default function ProfileScreen( {navigation} ) {
                 </View>
                 <View style={styles.separator}></View>
                 <View style={styles.columnFlex}>
-                    <Text style={[styles.statsNumber, styles.statSeeds]}>{reflectionCount * 100}</Text>
+                    <Text style={[styles.statsNumber, styles.statSeeds]}>{seeds}</Text>
                     <Text style={[styles.statsLabel, styles.statSeeds]}>Seeds</Text>
                 </View>
             </View>

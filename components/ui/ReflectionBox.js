@@ -53,8 +53,6 @@ export default function ReflectionBox() {
                     value={reflectionText}
                     multiline
                     numberOfLines={10}
-                    autoCapitalize
-                    autoCompleteType
                 />
                 <WidePillButton
                     title="Done"
@@ -88,7 +86,7 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 24,
         textAlign: 'center',
-        fontFamily: 'Montserrat Alternates',
+        fontFamily: 'Montserrat-Alternates',
         color: '#80A2C5',
     },
     titlePrompt: {

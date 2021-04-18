@@ -29,8 +29,10 @@ export default function ReflectionBox() {
             })
         } else {
             let updatedReflections = currentReflections.reflections;
+            let currSeeds = await storage.get("seeds");
             updatedReflections.push({entry: reflectionText, datetime: Date.now(), mood: reflectionMood});
             await storage.set('reflectionData', {reflections: updatedReflections});
+            await storage.set("seeds", currSeeds + 100);
         }
     }
 

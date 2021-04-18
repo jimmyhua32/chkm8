@@ -1,6 +1,12 @@
 {
     "accessories" : [
         {
+            "id" : 0,
+            "name" : "Leafy",
+            "description" : "Sometimes, simple is best.",
+            "cost" : 0
+        },
+        {
             "id" : 1,
             "name" :  "Test 1",
             "description" : "This is a test",

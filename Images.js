@@ -3,6 +3,7 @@ import React from "react";
 const assetsRoot = "./assets/";
 
 export const accessories = {
+    0 : require(assetsRoot + "leafy/blob-front.png"),
     1 : require(assetsRoot + "accessories/01.png"),
     2 : require(assetsRoot + "accessories/02.png"),
     3 : require(assetsRoot + "accessories/03.png"),

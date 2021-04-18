@@ -55,8 +55,6 @@ export default function ReflectionBox() {
                     value={reflectionText}
                     multiline
                     numberOfLines={10}
-                    autoCapitalize
-                    autoCompleteType
                 />
                 <WidePillButton
                     title="Done"

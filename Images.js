@@ -30,3 +30,10 @@ export const leafy = {
     "leafy-0f" : require(assetsRoot + "leafy/blob-front.png"),
     "leafy-0b" : require(assetsRoot + "leafy/blob-back.png")
 }
+
+export const icons = {
+    "profile" : require(assetsRoot + "profile.png"),
+    "reflect" : require(assetsRoot + "reflect.png"),
+    "rest" : require(assetsRoot + "rest.png"),
+    "customize" : require(assetsRoot + "customize.png")
+}

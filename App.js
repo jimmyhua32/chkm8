@@ -6,8 +6,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { useFonts } from 'expo-font';
 
-
-
 // Screens
 import HomeScreen from './components/screens/HomeScreen';
 import ProfileScreen from './components/screens/ProfileScreen';

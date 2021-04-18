@@ -1,14 +1,17 @@
-import React from "react";
+import React, {useState} from "react";
 import * as storage from '../../Storage';
 import {View, Text, StyleSheet, Image, Button, Alert} from 'react-native';
 import { TouchableOpacity } from "react-native-gesture-handler";
+import * as images from "../../Images";
 
 export default function SpecificAccessoryScreen(props) {
+    const [msg, changeMsg] = useState("none");
     let item = props.route.params.item;
+    accStatus(item);
     return (
         <View style={styles.container}>
             <View style={styles.accessory}>
-                <Image source={images[item.id]}/>
+                <Image source={images.accessories[item.id]}/>
                 <Text style={{marginTop: 20}}>{item.description}</Text>
             </View>
             <TouchableOpacity
@@ -34,29 +37,22 @@ export default function SpecificAccessoryScreen(props) {
                             Alert.alert("Not enough seeds!");
                         }
                     }
+                    changeMsg(item);
                 }}
             >
                 <Text style={{color: 'white'}}>Cost: {item.cost}</Text>
+                {/* replace with {msg} */}
             </TouchableOpacity>
         </View>
     );
 }
 
-const images = {
-    1 : require("../../assets/01.png"),
-    2 : require("../../assets/02.png"),
-    3 : require("../../assets/03.png"),
-    4 : require("../../assets/04.png"),
-    5 : require("../../assets/05.png"),
-    6 : require("../../assets/blob-front.png")
-};
-
 async function accStatus(item) {
     let owned = await storage.getOrDefault("accessories", []);
     if (owned.includes(item.id)) {
-        return "Choose";
+        changeMsg("Choose");
     }
-    return "Buy (" + item.cost + ") Seeds";    
+    changeMsg("Buy (" + item.cost + ") Seeds");    
 }
 
 const styles = StyleSheet.create({

@@ -29,8 +29,10 @@ export default function ReflectionBox() {
             })
         } else {
             let updatedReflections = currentReflections.reflections;
+            let currSeeds = await storage.get("seeds");
             updatedReflections.push({entry: reflectionText, datetime: Date.now(), mood: reflectionMood});
             await storage.set('reflectionData', {reflections: updatedReflections});
+            await storage.set("seeds", currSeeds + 100);
         }
     }
 
@@ -88,7 +90,7 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 24,
         textAlign: 'center',
-        fontFamily: 'Montserrat Alternates',
+        fontFamily: 'Montserrat-Alternates',
         color: '#80A2C5',
     },
     titlePrompt: {

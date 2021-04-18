@@ -20,17 +20,27 @@ export default function ReflectionSearchScreen( {navigation} ) {
     const reflectionPreviews = reflections.map(item => <ReflectionPreview date={item.datetime} body={item.entry} nav={navigation}/>);
 
     return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <View style={styles.container}>
+            <Text style={styles.title}>Past Reflections</Text>
             {reflectionPreviews}
         </View>
     );
 }
 
 const styles = StyleSheet.create({
+    container: {
+        backgroundColor: '#DEEFFF',
+        flex: 1,
+        alignItems: 'center'
+    },
     title: {
-        fontSize: 30,
-        fontWeight: 'bold',
-        paddingBottom: 50,
+        fontSize: 28,
+        fontWeight: '900',
+        textAlign: 'center',
+        fontFamily: 'Montserrat-Alternates',
+        color: '#80A2C5',
+        paddingTop: 100,
+        paddingBottom: 75
     },
     p1: {
         fontSize: 18,

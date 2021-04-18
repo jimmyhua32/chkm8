@@ -78,17 +78,14 @@ export default function ReflectionScreen( {navigation} ) {
                 />
 
 
+                <View style={styles.buttonContainer}>
+                    <WidePillButton
+                        title="Done"
+                        onPress={submitReflection}
+                    />
+                </View>
 
-                <WidePillButton
-                    title="Done"
-                    onPress={submitReflection}
-                />
             </View>
-
-            <Button
-                title="See all reflections (debugging purposes, remove later)"
-                onPress={viewAllReflections}
-            />
 
         </View>
     );
@@ -98,15 +95,18 @@ const styles = StyleSheet.create({
     reflectionView: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'center',
         backgroundColor: '#BBD9F8',
         width: '100%',
+        height: '100%'
     },
     whiteBackground: {
         backgroundColor: '#fff',
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
         width: '100%',
+        marginTop: '10%',
+        flex: 1,
+        justifyContent: 'space-between'
     },
     title: {
         fontSize: 24,
@@ -118,19 +118,21 @@ const styles = StyleSheet.create({
         width: 300,
         height: 'auto',
         paddingBottom: 15,
+        paddingTop: 100,
         fontWeight: '600',
     },
     p1: {
         fontSize: 18,
     },
     reflectionBox: {
-        height: 400,
-        width: 300,
+        height: '85%',
         borderWidth: 0,
         margin: 'auto',
-        padding: 10,
+        padding: 30,
         //outlineWidth: 0,
         fontFamily: 'Montserrat-Alternates',
+        textAlignVertical: 'top'
+
     },
     moodButtonBox: {
         display: 'flex',
@@ -138,5 +140,11 @@ const styles = StyleSheet.create({
         justifyContent: 'space-evenly',
         alignItems: 'center',
         width: 150
+    },
+    buttonContainer: {
+        paddingBottom: 50,
+        margin: 'auto',
+        flex: 1,
+        alignItems: 'center'
     }
 });

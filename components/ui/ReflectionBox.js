@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {View, Text, Button, StyleSheet, TextInput} from 'react-native';
+import {View, Text, Button, StyleSheet, TextInput, ScrollView, Keyboard, TouchableWithoutFeedback} from 'react-native';
 import MoodButton from './custom/MoodButton';
 import WidePillButton from "./custom/WidePillButton";
 import * as storage from '../../Storage';
@@ -9,6 +9,12 @@ export default function ReflectionBox() {
     const [reflectionText, onChangeReflectionText] = useState('What\'s on your mind?');
 
     const [reflectionMood, onChangeReflectionMood] = useState('Normal');
+
+    const DismissKeyboard = ({ children }) => (
+        <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+            {children}
+        </TouchableWithoutFeedback>
+    );
 
     async function viewAllReflections() {
         await console.log("Reflections submitted already:");
@@ -52,13 +58,19 @@ export default function ReflectionBox() {
                 */}
             </View>
             <View style={styles.whiteBackground}>
-                <TextInput
-                    style={styles.reflectionBox}
-                    onChangeText={text => onChangeReflectionText(text)}
-                    value={reflectionText}
-                    multiline
-                    numberOfLines={10}
-                />
+
+                    <TextInput
+                        style={styles.reflectionBox}
+                        onChangeText={text => onChangeReflectionText(text)}
+                        value={reflectionText}
+                        multiline
+                        numberOfLines={10}
+                        blurOnSubmit={true}
+                        onSubmitEditing={()=>{Keyboard.dismiss()}}
+                    />
+
+
+
                 <WidePillButton
                     title="Done"
                     onPress={submitReflection}

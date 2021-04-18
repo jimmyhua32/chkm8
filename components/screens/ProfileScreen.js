@@ -6,6 +6,7 @@ import * as storage from '../../Storage';
 export default function ProfileScreen( {navigation} ) {
 
     const [reflectionCount, setReflectionCount] = useState(0);
+    const [seeds, setSeeds] = useState(0);
 
     useFocusEffect(() => {
         storage.get('reflectionData').then((results) => {
@@ -13,6 +14,11 @@ export default function ProfileScreen( {navigation} ) {
                 setReflectionCount(results.reflections.length);
             }
         });
+        storage.get('seeds').then((results) => {
+            if (results) {
+                setSeeds(results);
+            }
+        })
     });
 
     return (
@@ -24,7 +30,7 @@ export default function ProfileScreen( {navigation} ) {
             </Text>
 
             <Text>Total Reflections: {reflectionCount} Reflections</Text>
-            <Text>Seeds: {reflectionCount * 100} Seeds</Text>
+            <Text>Seeds: {seeds} Seeds</Text>
 
             <Button
                 title="to home"

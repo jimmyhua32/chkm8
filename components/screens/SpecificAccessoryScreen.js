@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import * as storage from '../../Storage';
+import { useFocusEffect } from '@react-navigation/native';
 import {View, Text, StyleSheet, Image, Button, Alert} from 'react-native';
 import { TouchableOpacity } from "react-native-gesture-handler";
 import * as images from "../../Images";
@@ -7,7 +8,38 @@ import * as images from "../../Images";
 export default function SpecificAccessoryScreen(props) {
     const [msg, changeMsg] = useState("none");
     let item = props.route.params.item;
-    accStatus(item);
+    useFocusEffect(() => {
+        // React.useCallback(() => {
+        //     let isActive = true;
+        //     let getMsg = async () => {
+        //         try {
+        //             let owned = await storage.getOrDefault("accessories", []);
+        //             if (isActive) {
+        //                 if (owned.includes(item.id)) {
+        //                     changeMsg("Choose");
+        //                 }
+        //                 changeMsg("Buy (" + item.cost + " Seeds)");
+        //             }
+        //         } catch(e) {
+        //             console.log("error");
+        //         }
+        //     }
+        //     getMsg();
+        //     return () => {
+        //         isActive = false;
+        //     }
+        // });
+        // storage.getOrDefault("accessories", []).then((results) => {
+        //     if (results) {
+        //         if (results.includes(item.id)) {
+        //             changeMsg("Choose");
+        //         }
+        //         changeMsg("Buy (" + item.cost + " Seeds)");  
+        //     }
+        // }).catch(() => {
+        //     console.log("something went wrong");
+        // });
+    });
     return (
         <View style={styles.container}>
             <View style={styles.accessory}>
@@ -28,6 +60,7 @@ export default function SpecificAccessoryScreen(props) {
                         Alert.alert("Already equipped " + item.name);
                     } else if (!owned.includes(item.id)) {
                         let seeds = await storage.get("seeds");
+                        console.log("seeds: " + seeds);
                         if (seeds >= item.cost) {
                             storage.set("seeds", seeds - item.cost);
                             owned.push(item.id);
@@ -45,14 +78,6 @@ export default function SpecificAccessoryScreen(props) {
             </TouchableOpacity>
         </View>
     );
-}
-
-async function accStatus(item) {
-    let owned = await storage.getOrDefault("accessories", []);
-    if (owned.includes(item.id)) {
-        changeMsg("Choose");
-    }
-    changeMsg("Buy (" + item.cost + ") Seeds");    
 }
 
 const styles = StyleSheet.create({

@@ -1,3 +1,4 @@
+import { useFocusEffect } from "@react-navigation/native";
 import React, {useState} from "react";
 import {View, Text, Button, StyleSheet, Image, ImageBackground, TouchableOpacity} from 'react-native';
 import * as images from "../../Images";
@@ -21,9 +22,15 @@ export default function HomeScreen( {navigation} ) {
     }
     let background = images.reflectBackground[stringTime];
     let camp = images.reflectCampBackground[stringTime + "-camp"];
-    //let key = getAccessory().then((result) => {return result;}).catch(() => {return "leafy-0";});
-    let key = "leafy-0";
-    console.log(key);
+    const [key, changeKey] = useState("leafy-0");
+    useFocusEffect(() => {
+        storage.getOrDefault("cur_accessory", 0).then(
+            (results) => {
+                changeKey("leafy-" + results);
+            }
+        );
+    });
+    //console.log(key);
     let front = images.leafy[key + "f"];
     let back = images.leafy[key + "b"];
 
@@ -50,7 +57,6 @@ export default function HomeScreen( {navigation} ) {
                     <TouchableOpacity style={styles.menuButton} title="Rest"
                         onPress={() => {
                             toggleReflect(!reflect);
-                            console.log(reflect);
                             changeImg(reflect ? on : off);
                             changeBg(reflect ? camp : background);
                             changeLeafy(reflect ? front : back);
@@ -71,11 +77,6 @@ export default function HomeScreen( {navigation} ) {
             </ImageBackground>
         </View>
     );
-}
-
-async function getAccessory() {
-    let id = await storage.getOrDefault(cur_accessory, 0);
-    return "leafy-" + id;
 }
 
 const styles = StyleSheet.create({

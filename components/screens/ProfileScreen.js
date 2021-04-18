@@ -23,7 +23,7 @@ export default function ProfileScreen( {navigation} ) {
     });
 
     return (
-        <View>
+        <View style={styles.background}>
             <Text style={styles.title}>Profile</Text>
 
             <View style={styles.statsFlexBox}>
@@ -67,22 +67,13 @@ export default function ProfileScreen( {navigation} ) {
     );
 }
 
-const ReflectionLog = () => {
-    let json = get("key");
-    if (json == null) {
-        console.log("JSON for reflections is null");
-        return;
-    }
-    return (
-        <ScrollView>
-            {/* first figure out how to retrieve/store reflections */}
-        </ScrollView>
-    )
-}
-
 const styles = StyleSheet.create({
+    background: {
+        backgroundColor: '#DEEFFF',
+        height: '100%'
+    },
     title: {
-        fontSize: 34,
+        fontSize: 28,
         fontWeight: '900',
         textAlign: 'center',
         fontFamily: 'Montserrat-Alternates',

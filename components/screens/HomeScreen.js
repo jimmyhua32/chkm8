@@ -1,10 +1,37 @@
-import React from "react";
+import React, {useState} from "react";
 import {View, Text, Button, StyleSheet, Image, ImageBackground, TouchableOpacity} from 'react-native';
+import * as images from "../../Images";
+import * as storage from "../../Storage";
 
 const assetsRoot = '../../assets/';
 
 export default function HomeScreen( {navigation} ) {
-    let reflect = false;
+    let on = require(assetsRoot + 'reflect.png');
+    let off = require(assetsRoot + 'reflect-off.png');
+    let time = new Date().getHours();
+    let stringTime = "day"; // default
+    if (time >= 5 && time < 9) {
+        stringTime = "sunrise";
+    } else if (time >= 9 && time < 18) {
+        stringTime = "day";
+    } else if (time >= 18  && time < 21) {
+        stringTime = "sunset";
+    } else {
+        stringTime = "night";
+    }
+    let background = images.reflectBackground[stringTime];
+    let camp = images.reflectCampBackground[stringTime + "-camp"];
+    //let key = getAccessory().then((result) => {return result;}).catch(() => {return "leafy-0";});
+    let key = "leafy-0";
+    console.log(key);
+    let front = images.leafy[key + "f"];
+    let back = images.leafy[key + "b"];
+
+    const [reflect, toggleReflect] = useState(false);
+    const [reflectImg, changeImg] = useState(reflect ? on : off);
+    const [bgImg, changeBg] = useState(reflect ? background : camp);
+    const [leafy, changeLeafy] = useState(reflect ? front : back);
+
     return (
         <View style={styles.screenView}>
             {/*
@@ -14,32 +41,41 @@ export default function HomeScreen( {navigation} ) {
                 />
             </View>
             */}
-            <ImageBackground style={styles.backgroundContainer} source={require(assetsRoot + 'day_test.png')}>
-                <Image style={styles.character} source={require(assetsRoot + 'blob-back.png')}/>
+            <ImageBackground style={styles.backgroundContainer} source={bgImg}>
+                <Image style={styles.character} source={leafy}/>
                 <View style={styles.buttonBar}>
                     <TouchableOpacity style={styles.menuButton}title="Profile" onPress={() => {navigation.navigate("Profile")}}>
                         <Image source={require(assetsRoot + 'profile.png')}/>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.menuButton} title="Rest"
                         onPress={() => {
-                            reflect = !reflect;
+                            toggleReflect(!reflect);
+                            console.log(reflect);
+                            changeImg(reflect ? on : off);
+                            changeBg(reflect ? camp : background);
+                            changeLeafy(reflect ? front : back);
                         }
                     }>
                         <Image source={require(assetsRoot + "rest.png")}/>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.menuButton} title="Reflect"
                         onPress={() => {
-                            if (reflect) {
+                            if (!reflect) { // literally makes no sense
                                 navigation.navigate("Reflection");
                             }
                         }
                     }>
-                        <Image source={require(assetsRoot + "reflect.png")}/>
+                        <Image source={reflectImg}/>
                     </TouchableOpacity>
                 </View>
             </ImageBackground>
         </View>
     );
+}
+
+async function getAccessory() {
+    let id = await storage.getOrDefault(cur_accessory, 0);
+    return "leafy-" + id;
 }
 
 const styles = StyleSheet.create({
@@ -57,7 +93,10 @@ const styles = StyleSheet.create({
     },
     backgroundContainer: {
         height: '100%',
-        width: '100%'
+        width: '100%',
+        alignSelf: 'center',
+        flex: 1,
+        resizeMode: 'cover'
     },
     character: {
         alignSelf: 'center',

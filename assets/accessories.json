@@ -8,39 +8,33 @@
         },
         {
             "id" : 1,
-            "name" :  "Test 1",
-            "description" : "This is a test",
+            "name" :  "Top Hat",
+            "description" : "Roll out with style and class.",
             "cost" : 50
         },
         {
             "id" : 2,
-            "name" : "Test 2",
-            "description" : "This is another test",
+            "name" : "Party Hat",
+            "description" : "Is it time to celebrate?",
             "cost" : 200
         },
         {
             "id" : 3,
-            "name" : "Test 3",
-            "description" : "ha",
+            "name" : "Beanie",
+            "description" : "Nice and comfy.",
             "cost" : 15
         },
         {
             "id" : 4,
-            "name" : "Test 4",
-            "description" : "boo",
+            "name" : "White Headband",
+            "description" : "For pure concentration.",
             "cost" : 20
         },
         {
             "id" : 5,
-            "name" : "Test 5",
-            "description" : "more tests?",
+            "name" : "Flower",
+            "description" : "Leafy? More like Flower-y.",
             "cost" : 100
-        },
-        {
-            "id" : 6,
-            "name" : "Test 6",
-            "description" : "ermagerhd",
-            "cost" : 0
         }
     ]
 }

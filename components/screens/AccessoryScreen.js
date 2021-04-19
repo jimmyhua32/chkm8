@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'flex-end',
         flexWrap: 'wrap',
-        marginTop: '10%',
+        marginTop: '25%',
     },
     name: {
         fontFamily: 'Montserrat-Alternates',

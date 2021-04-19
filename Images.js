@@ -9,7 +9,6 @@ export const accessories = {
     3 : require(assetsRoot + "accessories/03.png"),
     4 : require(assetsRoot + "accessories/04.png"),
     5 : require(assetsRoot + "accessories/05.png"),
-    6 : require(assetsRoot + "leafy/blob-front.png")
 }
 
 export const reflectBackground = {
@@ -28,7 +27,12 @@ export const reflectCampBackground = {
 
 export const leafy = {
     "leafy-0f" : require(assetsRoot + "leafy/blob-front.png"),
-    "leafy-0b" : require(assetsRoot + "leafy/blob-back.png")
+    "leafy-0b" : require(assetsRoot + "leafy/blob-back.png"),
+    "leafy-1f" : require(assetsRoot + "leafy/tophat-front.png"),
+    "leafy-2f" : require(assetsRoot + "leafy/party-front.png"),
+    "leafy-3f" : require(assetsRoot + "leafy/beanie-front.png"),
+    "leafy-4f" : require(assetsRoot + "leafy/headband-front.png"),
+    "leafy-5f" : require(assetsRoot + "leafy/flower-front.png")
 }
 
 export const icons = {

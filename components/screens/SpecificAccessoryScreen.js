@@ -1,56 +1,37 @@
 import React, {useState} from "react";
 import * as storage from '../../Storage';
 import { useFocusEffect } from '@react-navigation/native';
-import {View, Text, StyleSheet, Image, Button, Alert} from 'react-native';
+import {View, Text, StyleSheet, Image, Alert} from 'react-native';
 import { TouchableOpacity } from "react-native-gesture-handler";
 import * as images from "../../Images";
 
 export default function SpecificAccessoryScreen(props) {
-    const [msg, changeMsg] = useState("none");
     let item = props.route.params.item;
+    const [msg, changeMsg] = useState("Cost: " + item.cost);
     useFocusEffect(() => {
-        // React.useCallback(() => {
-        //     let isActive = true;
-        //     let getMsg = async () => {
-        //         try {
-        //             let owned = await storage.getOrDefault("accessories", []);
-        //             if (isActive) {
-        //                 if (owned.includes(item.id)) {
-        //                     changeMsg("Choose");
-        //                 }
-        //                 changeMsg("Buy (" + item.cost + " Seeds)");
-        //             }
-        //         } catch(e) {
-        //             console.log("error");
-        //         }
-        //     }
-        //     getMsg();
-        //     return () => {
-        //         isActive = false;
-        //     }
-        // });
-        // storage.getOrDefault("accessories", []).then((results) => {
-        //     if (results) {
-        //         if (results.includes(item.id)) {
-        //             changeMsg("Choose");
-        //         }
-        //         changeMsg("Buy (" + item.cost + " Seeds)");  
-        //     }
-        // }).catch(() => {
-        //     console.log("something went wrong");
-        // });
+        storage.getOrDefault("accessories", [0]).then((results) => {
+            if (results) {
+                if (results.includes(item.id)) {
+                    changeMsg("Choose");
+                } else {
+                    changeMsg("Buy (" + item.cost + " Seeds)");  
+                }
+            }
+        }).catch(() => {
+            console.log("something went wrong");
+        });
     });
     return (
         <View style={styles.container}>
             <View style={styles.accessory}>
                 <Image source={images.accessories[item.id]}/>
-                <Text style={{marginTop: 20}}>{item.description}</Text>
+                <Text style={{marginTop: 20, fontFamily: 'Montserrat-Alternates'}}>{item.description}</Text>
             </View>
             <TouchableOpacity
                 style={styles.button}
                 onPress= {async () => {
-                    let acc = await storage.get("cur_accessory");
-                    let owned = await storage.getOrDefault("accessories", []);
+                    let acc = await storage.getOrDefault("cur_accessory", 0);
+                    let owned = await storage.getOrDefault("accessories", [0]);
                     console.log(acc);
                     console.log(owned);
                     if (acc != item.id && owned.includes(item.id)) {
@@ -70,11 +51,10 @@ export default function SpecificAccessoryScreen(props) {
                             Alert.alert("Not enough seeds!");
                         }
                     }
-                    changeMsg(item);
+                    changeMsg("Choose");
                 }}
             >
-                <Text style={{color: 'white'}}>Cost: {item.cost}</Text>
-                {/* replace with {msg} */}
+                <Text style={{color: 'white'}}>{msg}</Text>
             </TouchableOpacity>
         </View>
     );
@@ -88,12 +68,18 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     accessory: {
-        marginTop: '20%'
+        marginTop: '30%',
+        alignItems: 'center',
+        backgroundColor: '#80A2C5',
+        paddingTop: 40,
+        paddingHorizontal: 75,
+        paddingBottom: 100,
+        borderRadius: 45
     },
     button: {
         backgroundColor: '#46698C',
         justifyContent: 'flex-end',
-        marginTop: '70%',
+        marginTop: '45%',
         padding: 20,
         paddingHorizontal: 30,
         borderRadius: 30

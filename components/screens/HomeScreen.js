@@ -30,13 +30,12 @@ export default function HomeScreen( {navigation} ) {
             }
         );
     });
-    //console.log(key);
     let front = images.leafy[key + "f"];
     let back = images.leafy[key + "b"];
 
     const [reflect, toggleReflect] = useState(false);
     const [reflectImg, changeImg] = useState(reflect ? on : off);
-    const [bgImg, changeBg] = useState(reflect ? background : camp);
+    const [bgImg, changeBg] = useState(reflect ? camp : background);
     const [leafy, changeLeafy] = useState(reflect ? front : back);
 
     return (
@@ -90,7 +89,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row', 
         justifyContent: 'center', 
         alignItems: 'flex-end', 
-        marginTop: '10%'
+        marginTop: '5%'
     },
     backgroundContainer: {
         height: '100%',
@@ -102,9 +101,6 @@ const styles = StyleSheet.create({
     character: {
         alignSelf: 'center',
         justifyContent: 'flex-end',
-        marginTop: '95%'
-    },
-    menuButton: {
-        resizeMode: 'cover'
+        marginTop: '110%',
     }
 });

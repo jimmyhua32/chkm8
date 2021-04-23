@@ -101,6 +101,6 @@ const styles = StyleSheet.create({
     character: {
         alignSelf: 'center',
         justifyContent: 'flex-end',
-        marginTop: '110%',
+        marginTop: '140%',
     }
 });

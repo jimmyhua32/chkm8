@@ -27,7 +27,7 @@ export const reflectCampBackground = {
 
 export const leafy = {
     "leafy-0f" : require(assetsRoot + "leafy/blob-front.png"),
-    "leafy-0b" : require(assetsRoot + "leafy/blob-back.png"),
+    "leafy-0b" : require(assetsRoot + "leafy/blob-back.gif"),
     "leafy-1f" : require(assetsRoot + "leafy/tophat-front.png"),
     "leafy-2f" : require(assetsRoot + "leafy/party-front.png"),
     "leafy-3f" : require(assetsRoot + "leafy/beanie-front.png"),

@@ -37,7 +37,6 @@ export default function HomeScreen( {navigation} ) {
     const [reflectImg, changeImg] = useState(reflect ? on : off);
     const [bgImg, changeBg] = useState(reflect ? camp : background);
     const [leafy, changeLeafy] = useState(reflect ? front : back);
-
     return (
         <View style={styles.screenView}>
             {/*
@@ -50,10 +49,10 @@ export default function HomeScreen( {navigation} ) {
             <ImageBackground style={styles.backgroundContainer} source={bgImg}>
                 <Image style={styles.character} source={leafy}/>
                 <View style={styles.buttonBar}>
-                    <TouchableOpacity style={styles.menuButton}title="Profile" onPress={() => {navigation.navigate("Profile")}}>
-                        <Image source={require(assetsRoot + 'profile.png')}/>
+                    <TouchableOpacity title="Profile" onPress={() => {navigation.navigate("Profile")}}>
+                        <Image style={styles.menuButton} source={require(assetsRoot + 'profile.png')}/>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.menuButton} title="Rest"
+                    <TouchableOpacity title="Rest"
                         onPress={() => {
                             toggleReflect(!reflect);
                             changeImg(reflect ? on : off);
@@ -61,16 +60,16 @@ export default function HomeScreen( {navigation} ) {
                             changeLeafy(reflect ? front : back);
                         }
                     }>
-                        <Image source={require(assetsRoot + "rest.png")}/>
+                        <Image style={styles.menuButton} source={require(assetsRoot + "rest.png")}/>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.menuButton} title="Reflect"
+                    <TouchableOpacity title="Reflect"
                         onPress={() => {
                             if (!reflect) { // literally makes no sense
                                 navigation.navigate("Reflection");
                             }
                         }
                     }>
-                        <Image source={reflectImg}/>
+                        <Image style={styles.menuButton} source={reflectImg}/>
                     </TouchableOpacity>
                 </View>
             </ImageBackground>
@@ -102,5 +101,11 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         justifyContent: 'flex-end',
         marginTop: '110%',
+        resizeMode: 'contain',
+        maxHeight: '18%'
+    },
+    menuButton: {
+        maxHeight: '85%',
+        resizeMode: 'contain'
     }
 });

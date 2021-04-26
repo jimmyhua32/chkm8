@@ -17,7 +17,7 @@ export default function ReflectionSearchScreen( {navigation} ) {
     useFocusEffect(() => {
         storage.get('reflectionData').then((results) => {
             if (results) {
-                setReflections(results.reflections);
+                setReflections(results.reflections.reverse()); // reverse to have most recent at the top
             }
         });
     });

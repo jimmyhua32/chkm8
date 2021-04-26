@@ -10,9 +10,10 @@ export default function ReflectionPreview(props) {
     ];
     let date = new Date(props.date);
     // date function 'toLocaleString' would be perfect but it doesn't work on RN android
-    let dateString = date.getDate() + " " +
-                     monthNames[date.getMonth()] + " " +
-                     date.getFullYear();
+    let dateString = monthNames[date.getMonth()] + " " + 
+        date.getDate() + " " +
+        date.getFullYear() + " (" +
+        date.getHours() + ":" + date.getMinutes() + ")";
 
 
     function onPressed(props) {

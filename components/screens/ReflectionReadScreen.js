@@ -8,11 +8,9 @@ export default function ReflectionReadScreen(props) {
     ];
     let date = new Date(props.route.params.date);
     // date function 'toLocaleString' would be perfect but it doesn't work on RN android
-    let dateString = date.getDate() + " " +
-        monthNames[date.getMonth()] + " " +
+    let dateString = monthNames[date.getMonth()] + " " + 
+        date.getDate() + " " +
         date.getFullYear();
-
-
 
     return (
         <View style={styles.previewContainer}>

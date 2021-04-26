@@ -1,12 +1,12 @@
 import { useFocusEffect } from "@react-navigation/native";
-import React, {useState} from "react";
+import React, {useMemo, useState} from "react";
 import {View, Text, Button, StyleSheet, Image, ImageBackground, TouchableOpacity} from 'react-native';
 import * as images from "../../Images";
 import * as storage from "../../Storage";
 
 const assetsRoot = '../../assets/';
 
-export default function HomeScreen( {navigation} ) {
+export default function HomeScreen( {navigation}) {
     let on = require(assetsRoot + 'reflect.png');
     let off = require(assetsRoot + 'reflect-off.png');
     let time = new Date().getHours();
@@ -32,6 +32,10 @@ export default function HomeScreen( {navigation} ) {
     });
     let front = images.leafy[key + "f"];
     let back = images.leafy[key + "b"];
+    useMemo(() => {
+        front = images.leafy[key + "f"];
+        back = images.leafy[key + "b"];
+    }, [key]);
 
     const [reflect, toggleReflect] = useState(false);
     const [reflectImg, changeImg] = useState(reflect ? on : off);
@@ -47,7 +51,7 @@ export default function HomeScreen( {navigation} ) {
             </View>
             */}
             <ImageBackground style={styles.backgroundContainer} source={bgImg}>
-                <Image style={styles.character} source={leafy}/>
+                <Image style={styles.character} source={leafy} onLoad={() => {console.log(leafy)}} key={leafy}/>
                 <View style={styles.buttonBar}>
                     <TouchableOpacity title="Profile" onPress={() => {navigation.navigate("Profile")}}>
                         <Image style={styles.menuButton} source={require(assetsRoot + 'profile.png')}/>
@@ -102,7 +106,8 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
         marginTop: '110%',
         resizeMode: 'contain',
-        maxHeight: '18%'
+        height: '18%',
+        minHeight: '18%'
     },
     menuButton: {
         maxHeight: '85%',

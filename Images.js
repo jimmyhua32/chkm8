@@ -29,10 +29,15 @@ export const leafy = {
     "leafy-0f" : require(assetsRoot + "leafy/blob-front.png"),
     "leafy-0b" : require(assetsRoot + "leafy/blob-back.gif"),
     "leafy-1f" : require(assetsRoot + "leafy/tophat-front.png"),
+    "leafy-1b" : require(assetsRoot + "leafy/tophat-back.gif"),
     "leafy-2f" : require(assetsRoot + "leafy/party-front.png"),
+    "leafy-2b" : require(assetsRoot + "leafy/party-back.gif"),
     "leafy-3f" : require(assetsRoot + "leafy/beanie-front.png"),
+    "leafy-3b" : require(assetsRoot + "leafy/beanie-back.gif"),
     "leafy-4f" : require(assetsRoot + "leafy/headband-front.png"),
-    "leafy-5f" : require(assetsRoot + "leafy/flower-front.png")
+    "leafy-4b" : require(assetsRoot + "leafy/headband-back.gif"),
+    "leafy-5f" : require(assetsRoot + "leafy/flower-front.png"),
+    "leafy-5b" : require(assetsRoot + "leafy/flower-back.gif")
 }
 
 export const icons = {

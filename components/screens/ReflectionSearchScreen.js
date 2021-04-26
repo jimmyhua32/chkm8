@@ -6,10 +6,14 @@ import { SearchBar } from 'react-native-elements';
 
 import ReflectionPreview from "../ui/ReflectionPreview";
 
+let lastSearch = '';
+let cachedCopy = []; // save the previous copy to reduce compute time
+
 export default function ReflectionSearchScreen( {navigation} ) {
     const [reflections, setReflections] = useState([]);
     const [search, updateSearch] = useState('');
 
+    // get all reflections
     useFocusEffect(() => {
         storage.get('reflectionData').then((results) => {
             if (results) {
@@ -20,15 +24,6 @@ export default function ReflectionSearchScreen( {navigation} ) {
 
     let reflectionPreviews = reflections.map(item => <ReflectionPreview key={item.datetime} date={item.datetime} body={item.entry} nav={navigation}/>);
 
-    const filterReflections = (text) => {
-        reflectionsPreviews.forEach((item) => {
-            if (item.body.includes(text)) {
-                reflectionCopy.push(item);
-            }
-        });
-        updateSearch(text);
-    }
-
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Past Reflections</Text>
@@ -36,12 +31,33 @@ export default function ReflectionSearchScreen( {navigation} ) {
                 containerStyle={styles.searchContainer}
                 inputContainerStyle={styles.inputContainer}
                 placeholder='Filter reflections...'
-                onChangeText={(text) => {console.log("calling filter");filterReflections(text);}}
+                onChangeText={(text) => {updateSearch(text)}}
                 value={search}
             />
-            {reflectionPreviews}
+            {filterPreviews(search, reflectionPreviews)}
         </View>
     );
+}
+
+// this runs constantly so save the previous output to save time/memory
+const filterPreviews = (search, previews) => {
+    if (search == '') {
+        return previews;
+    }
+    if (lastSearch == search) {
+        return cachedCopy;
+    }
+    lastSearch = search;
+    let copy = [];
+    search = search.toUpperCase();
+    previews.forEach((item) => {
+        let body = item.props.body.toUpperCase();
+        if (body.includes(search)) {
+            copy.push(item);
+        }
+    });
+    cachedCopy = copy;
+    return cachedCopy;
 }
 
 const styles = StyleSheet.create({

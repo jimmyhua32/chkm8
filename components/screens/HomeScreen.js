@@ -50,7 +50,7 @@ export default function HomeScreen( {navigation} ) {
             <ImageBackground style={styles.backgroundContainer} source={bgImg}>
                 <Image style={styles.character} source={leafy}/>
                 <View style={styles.buttonBar}>
-                    <TouchableOpacity style={styles.menuButton}title="Profile" onPress={() => {navigation.navigate("Profile")}}>
+                    <TouchableOpacity style={styles.menuButton}title="Profile" onPress={() => {navigation.navigate("Onboarding")}}>
                         <Image source={require(assetsRoot + 'profile.png')}/>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.menuButton} title="Rest"

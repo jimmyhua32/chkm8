@@ -14,6 +14,7 @@ import ReflectionSearchScreen from "./components/screens/ReflectionSearchScreen"
 import ReflectionReadScreen from './components/screens/ReflectionReadScreen';
 import AccessoryScreen from './components/screens/AccessoryScreen';
 import SpecificAccessoryScreen from './components/screens/SpecificAccessoryScreen';
+import OnboardingScreen from "./components/screens/OnboardingScreen";
 
 export default function App() {
 
@@ -21,6 +22,7 @@ export default function App() {
 
     // returns a boolean
     useFonts({'Montserrat-Alternates': require('./assets/fonts/MontserratAlternates-Medium.ttf')});
+    useFonts({'Montserrat-Alternates-Bold': require('./assets/fonts/MontserratAlternates-Bold.ttf')});
 
     return (
       <NavigationContainer>
@@ -32,6 +34,7 @@ export default function App() {
               <Stack.Screen name='ReflectionReadScreen' component={ReflectionReadScreen} />
               <Stack.Screen name='Accessories' component={AccessoryScreen} />
               <Stack.Screen name='SpecificAccessory' component={SpecificAccessoryScreen} />
+              <Stack.Screen name='Onboarding' component={OnboardingScreen} />
           </Stack.Navigator>
       </NavigationContainer>
 

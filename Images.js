@@ -25,6 +25,10 @@ export const reflectCampBackground = {
     "night-camp" : require(assetsRoot + "night-camp.png")
 }
 
+export const onboarding = {
+    "mountains" : require(assetsRoot + "mountains.png")
+}
+
 export const leafy = {
     "leafy-0f" : require(assetsRoot + "leafy/blob-front.png"),
     "leafy-0b" : require(assetsRoot + "leafy/blob-back.png"),

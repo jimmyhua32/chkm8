@@ -17,6 +17,7 @@ export default function ReflectionPreview(props) {
 
 
     function onPressed(props) {
+        console.log(props);
         props.nav.navigate('ReflectionReadScreen', props);
     }
 

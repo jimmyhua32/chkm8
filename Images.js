@@ -11,6 +11,13 @@ export const accessories = {
     5 : require(assetsRoot + "accessories/05.png"),
 }
 
+export const reflectCloud = {
+    "day": require(assetsRoot + "test/day-cloud.png"),
+    "sunrise" : require(assetsRoot + "test/sunrise-cloud.png"),
+    "sunset" : require(assetsRoot + "test/sunset-cloud.png"),
+    "night" : require(assetsRoot + "test/night-cloud.png")
+}
+
 export const reflectBackground = {
     "day" : require(assetsRoot + "day.png"),
     "sunrise" : require(assetsRoot + "sunrise.png"),

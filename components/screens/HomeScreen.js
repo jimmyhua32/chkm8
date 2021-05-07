@@ -1,12 +1,12 @@
-import { useFocusEffect } from "@react-navigation/native";
-import React, {useMemo, useState} from "react";
+import { useFocusEffect, useLinkProps } from "@react-navigation/native";
+import React, {useEffect, useMemo, useState} from "react";
 import {View, Text, Button, StyleSheet, Image, ImageBackground, TouchableOpacity} from 'react-native';
 import * as images from "../../Images";
 import * as storage from "../../Storage";
 
 const assetsRoot = '../../assets/';
 
-export default function HomeScreen( {navigation}) {
+export default function HomeScreen( {navigation} ) {
     let on = require(assetsRoot + 'reflect.png');
     let off = require(assetsRoot + 'reflect-off.png');
     let time = new Date().getHours();
@@ -22,7 +22,7 @@ export default function HomeScreen( {navigation}) {
     }
     let background = images.reflectBackground[stringTime];
     let camp = images.reflectCampBackground[stringTime + "-camp"];
-    const [key, changeKey] = useState("leafy-0");
+    const [key, changeKey] = useState("");
     useFocusEffect(() => {
         storage.getOrDefault("cur_accessory", 0).then(
             (results) => {
@@ -32,26 +32,24 @@ export default function HomeScreen( {navigation}) {
     });
     let front = images.leafy[key + "f"];
     let back = images.leafy[key + "b"];
+
+    // state is asychronous so need to update logic to reflect that; render is always showing previous state
+
+    const [reflect, toggleReflect] = useState(false);
+    const [reflectImg, changeImg] = useState(off);
+    const [bgImg, changeBg] = useState(background);
+    const [leafy, changeLeafy] = useState(back);
+
     useMemo(() => {
         front = images.leafy[key + "f"];
         back = images.leafy[key + "b"];
+        changeLeafy(back); 
     }, [key]);
 
-    const [reflect, toggleReflect] = useState(false);
-    const [reflectImg, changeImg] = useState(reflect ? on : off);
-    const [bgImg, changeBg] = useState(reflect ? camp : background);
-    const [leafy, changeLeafy] = useState(reflect ? front : back);
     return (
         <View style={styles.screenView}>
-            {/*
-                <View style={{alignSelf: 'flex-start'}}>
-                <Button
-                    title="Options"
-                />
-            </View>
-            */}
             <ImageBackground style={styles.backgroundContainer} source={bgImg}>
-                <Image style={styles.character} source={leafy} onLoad={() => {console.log(leafy)}} key={leafy}/>
+                <Image style={styles.character} source={leafy} key={leafy}/>
                 <View style={styles.buttonBar}>
                     <TouchableOpacity title="Profile" onPress={() => {navigation.navigate("Profile")}}>
                         <Image style={styles.menuButton} source={require(assetsRoot + 'profile.png')}/>

@@ -39,12 +39,12 @@ export default function ReflectionSearchScreen( {navigation} ) {
     );
 }
 
-// this runs constantly so save the previous output to save time/memory
+// returns an array of JSX elements after being filtered by a search string
 const filterPreviews = (search, previews) => {
     if (search == '') {
         return previews;
     }
-    if (lastSearch == search) {
+    if (lastSearch == search) { // this function runs constantly so save the previous output to save time/memory
         return cachedCopy;
     }
     lastSearch = search;

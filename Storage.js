@@ -27,4 +27,12 @@ export const getOrDefault = async (key, other) => {
     }
 }
 
+export const clear = async() => {
+    try {
+        await AsyncStorage.clear();
+        console.log('storage cleared');
+    } catch(e) {
+        console.log(e);
+    }
+}
 

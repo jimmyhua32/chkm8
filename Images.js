@@ -32,6 +32,10 @@ export const reflectCampBackground = {
     "night-camp" : require(assetsRoot + "night-camp.png")
 }
 
+export const onboarding = {
+    "mountains" : require(assetsRoot + "mountains.png")
+}
+
 export const leafy = {
     "leafy-0f" : require(assetsRoot + "leafy/blob-front.png"),
     "leafy-0b" : require(assetsRoot + "leafy/blob-back.gif"),
@@ -51,5 +55,8 @@ export const icons = {
     "profile" : require(assetsRoot + "profile.png"),
     "reflect" : require(assetsRoot + "reflect.png"),
     "rest" : require(assetsRoot + "rest.png"),
-    "customize" : require(assetsRoot + "customize.png")
+    "customize" : require(assetsRoot + "customize.png"),
+    "profile-no-shadow" : require(assetsRoot + "profile-no-shadow.png"),
+    "reflect-no-shadow" : require(assetsRoot + "reflect-no-shadow.png"),
+    "rest-no-shadow" : require(assetsRoot + "rest-no-shadow.png"),
 }

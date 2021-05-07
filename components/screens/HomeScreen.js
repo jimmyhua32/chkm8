@@ -1,6 +1,6 @@
-import { useFocusEffect, useLinkProps } from "@react-navigation/native";
-import React, {useEffect, useMemo, useState} from "react";
-import {View, Text, Button, StyleSheet, Image, ImageBackground, TouchableOpacity} from 'react-native';
+import { useFocusEffect } from "@react-navigation/native";
+import React, {useState, useMemo} from "react";
+import {View, Text, Button, StyleSheet, Image, ImageBackground, TouchableOpacity, Platform} from 'react-native';
 import * as images from "../../Images";
 import * as storage from "../../Storage";
 
@@ -102,10 +102,20 @@ const styles = StyleSheet.create({
     character: {
         alignSelf: 'center',
         justifyContent: 'flex-end',
-        marginTop: '110%',
         resizeMode: 'contain',
         height: '18%',
-        minHeight: '18%'
+        minHeight: '18%',
+        ...Platform.select({
+            ios: {
+                marginTop: '110%',
+            },
+            android: {
+                marginTop: '140%',
+            },
+            default: {
+                marginTop: '110%',
+            }
+        })
     },
     menuButton: {
         maxHeight: '85%',

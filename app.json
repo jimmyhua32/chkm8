@@ -22,6 +22,8 @@
       "supportsTablet": true
     },
     "android": {
+      "versionCode": 1,
+      "package": "edu.uw.chkm8.leafy",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"

@@ -18,7 +18,7 @@ export default function OnboardingPart3(props) {
                     <Image source={images.leafy['leafy-0f']} style={styles.leafySmall}/>
                 </View>
 
-                <View style={{...styles.singleColumn, ...styles.spacer}}>
+                <View style={{...styles.spacer}}>
                     <View style={styles.iconInfoPill}>
                         <Image source={images.icons['profile']} style={styles.icon}/>
                         <Text style={styles.p2}>This is your profile. Access this to view previous reflections and explore some accessories.</Text>
@@ -45,7 +45,8 @@ export default function OnboardingPart3(props) {
 
 const styles = StyleSheet.create({
     spacer: {
-      marginTop: 60
+        position: 'absolute',
+        top: 200
     },
     icon: {
         width: 110,
@@ -56,8 +57,9 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-evenly',
         alignItems: 'center',
-        width: "80%",
-        height: "25%",
+        width: 300,
+        height: 90,
+        padding: 10,
         margin: 'auto',
         backgroundColor: '#FFFFFF',
         borderRadius: 50,

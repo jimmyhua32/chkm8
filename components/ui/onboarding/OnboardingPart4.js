@@ -93,9 +93,10 @@ const styles = StyleSheet.create({
         justifyContent: 'space-evenly'
     },
     panelButton: {
-        margin: 10,
-        width: 150,
-        height: 150,
+        margin: 20,
+        padding: 10,
+        width: 140,
+        height: 140,
         borderRadius: 40,
         backgroundColor: '#80A2C5',
         flexDirection:'column',

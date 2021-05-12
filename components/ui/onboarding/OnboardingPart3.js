@@ -17,24 +17,23 @@ export default function OnboardingPart3(props) {
                 <View style={styles.leftAlign}>
                     <Image source={images.leafy['leafy-0f']} style={styles.leafySmall}/>
                 </View>
+            </View>
 
-                <View style={{...styles.spacer}}>
-                    <View style={styles.iconInfoPill}>
-                        <Image source={images.icons['profile']} style={styles.icon}/>
-                        <Text style={styles.p2}>This is your profile. Access this to view previous reflections and explore some accessories.</Text>
-                    </View>
-
-                    <View style={styles.iconInfoPill}>
-                        <Image source={images.icons['reflect']} style={styles.icon}/>
-                        <Text style={styles.p2}>Take a break! At anytime in your journey, take a break. <Text style={styles.bold2}>You must take a break in order to reflect.</Text></Text>
-                    </View>
-
-                    <View style={styles.iconInfoPill}>
-                        <Image source={images.icons['rest']} style={styles.icon}/>
-                        <Text style={styles.p2}>Reflect on what’s going on. Pause admist any chaos and take some time to reflect.</Text>
-                    </View>
+            <View style={styles.singleColumn2}>
+                <View style={styles.iconInfoPill}>
+                    <Image source={images.icons['profile']} style={styles.icon}/>
+                    <Text style={styles.p2}>This is your profile. Access this to view previous reflections and explore some accessories.</Text>
                 </View>
 
+                <View style={styles.iconInfoPill}>
+                    <Image source={images.icons['reflect']} style={styles.icon}/>
+                    <Text style={styles.p2}>Take a break! At anytime in your journey, take a break. <Text style={styles.bold2}>You must take a break in order to reflect.</Text></Text>
+                </View>
+
+                <View style={styles.iconInfoPill}>
+                    <Image source={images.icons['rest']} style={styles.icon}/>
+                    <Text style={styles.p2}>Reflect on what’s going on. Pause admist any chaos and take some time to reflect.</Text>
+                </View>
 
 
             </View>
@@ -44,10 +43,6 @@ export default function OnboardingPart3(props) {
 }
 
 const styles = StyleSheet.create({
-    spacer: {
-        position: 'absolute',
-        top: 200
-    },
     icon: {
         width: 110,
         height: 110,
@@ -58,12 +53,11 @@ const styles = StyleSheet.create({
         justifyContent: 'space-evenly',
         alignItems: 'center',
         width: 300,
-        height: 90,
-        padding: 10,
+        height: 100,
         margin: 'auto',
         backgroundColor: '#FFFFFF',
         borderRadius: 50,
-        marginBottom: 20
+        marginBottom: 10
     },
     leafySmall: {
         width: 60,
@@ -78,7 +72,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'flex-start',
         width: '80%',
-        margin: 'auto'
+        margin: 'auto',
     },
     rightAlign: {
         flex: 1,
@@ -134,7 +128,7 @@ const styles = StyleSheet.create({
         width: '100%'
     },
     mountainContainer: {
-        marginTop: 20
+        marginTop: 50
     },
     buttonContainer: {
         marginTop: 200
@@ -156,6 +150,20 @@ const styles = StyleSheet.create({
         margin: 'auto',
         position: 'absolute',
         top: 140,
+        left: 0,
+        right: 0,
+        bottom: 0
+    },
+    singleColumn2: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'flex-start',
+        flexWrap: 'nowrap',
+        alignItems: 'center',
+        width: '100%',
+        margin: 'auto',
+        position: 'absolute',
+        top: "50%",
         left: 0,
         right: 0,
         bottom: 0

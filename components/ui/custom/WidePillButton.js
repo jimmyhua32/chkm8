@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
         alignSelf: "center",
         textAlign: 'center',
         margin: 'auto',
+        paddingTop: 5,
         fontFamily: 'Montserrat-Alternates',
     }
 });

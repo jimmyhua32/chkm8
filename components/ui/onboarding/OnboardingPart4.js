@@ -51,7 +51,7 @@ export default function OnboardingPart4(props) {
 
 const styles = StyleSheet.create({
     spacer: {
-        marginTop: 15
+        marginTop: 5
     },
     statsFlexBox: {
         flexDirection:'row',

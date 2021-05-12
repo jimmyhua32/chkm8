@@ -114,6 +114,7 @@ const styles = StyleSheet.create({
         width: 250,
         fontFamily: 'Montserrat-Alternates',
         padding: 20,
+        marginRight: 13,
         color: '#80A2C5'
     },
     titleContainer: {

@@ -104,10 +104,20 @@ const styles = StyleSheet.create({
         color: '#80A2C5'
     },
     bold2: {
-        fontSize: 14,
         fontFamily: 'Montserrat-Alternates-Bold',
         padding: 20,
         color: '#80A2C5',
+        ...Platform.select({
+            ios: {
+                fontSize: 12,
+            },
+            android: {
+                fontSize: 14,
+            },
+            default: {
+                fontSize: 12,
+            }
+        })
     },
     p2: {
         width: 250,
@@ -117,7 +127,7 @@ const styles = StyleSheet.create({
         color: '#80A2C5',
         ...Platform.select({
             ios: {
-                fontSize: 10,
+                fontSize: 12,
             },
             android: {
                 fontSize: 14,

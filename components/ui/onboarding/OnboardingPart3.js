@@ -149,7 +149,7 @@ const styles = StyleSheet.create({
         width: '100%',
         margin: 'auto',
         position: 'absolute',
-        top: 140,
+        top: "15%",
         left: 0,
         right: 0,
         bottom: 0
@@ -163,7 +163,7 @@ const styles = StyleSheet.create({
         width: '100%',
         margin: 'auto',
         position: 'absolute',
-        top: "50%",
+        top: "40%",
         left: 0,
         right: 0,
         bottom: 0

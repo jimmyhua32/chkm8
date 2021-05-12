@@ -110,12 +110,22 @@ const styles = StyleSheet.create({
         color: '#80A2C5',
     },
     p2: {
-        fontSize: 14,
         width: 250,
         fontFamily: 'Montserrat-Alternates',
         padding: 20,
         marginRight: 13,
-        color: '#80A2C5'
+        color: '#80A2C5',
+        ...Platform.select({
+            ios: {
+                fontSize: 10,
+            },
+            android: {
+                fontSize: 14,
+            },
+            default: {
+                fontSize: 12,
+            }
+        })
     },
     titleContainer: {
         position: 'absolute',

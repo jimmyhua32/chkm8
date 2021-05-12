@@ -51,7 +51,18 @@ export default function OnboardingPart4(props) {
 
 const styles = StyleSheet.create({
     spacer: {
-        marginTop: 5
+        ...Platform.select({
+            ios: {
+                marginTop: 0
+            },
+            android: {
+                marginTop: 5
+            },
+            default: {
+                marginTop: 5
+            }
+        })
+
     },
     statsFlexBox: {
         flexDirection:'row',

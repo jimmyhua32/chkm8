@@ -1,5 +1,5 @@
 import React from "react";
-import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet, Image, TouchableOpacity, Platform} from 'react-native';
 import SpeechBubble from "./SpeechBubble";
 import * as images from "../../../Images";
 
@@ -193,9 +193,20 @@ const styles = StyleSheet.create({
         width: '100%',
         margin: 'auto',
         position: 'absolute',
-        top: 140,
+
         left: 0,
         right: 0,
-        bottom: 0
+        bottom: 0,
+        ...Platform.select({
+            ios: {
+                top: 100,
+            },
+            android: {
+                top: 140,
+            },
+            default: {
+                top: 120,
+            }
+        })
     }
 });

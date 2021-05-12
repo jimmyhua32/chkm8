@@ -54,7 +54,9 @@ export const leafy = {
 export const icons = {
     "profile" : require(assetsRoot + "profile.png"),
     "reflect" : require(assetsRoot + "reflect.png"),
+    "reflect-grey" : require(assetsRoot + "reflect-off.png"),
     "rest" : require(assetsRoot + "rest.png"),
+    "journey" : require(assetsRoot + "journey.png"),
     "customize" : require(assetsRoot + "customize.png"),
     "profile-no-shadow" : require(assetsRoot + "profile-no-shadow.png"),
     "reflect-no-shadow" : require(assetsRoot + "reflect-no-shadow.png"),

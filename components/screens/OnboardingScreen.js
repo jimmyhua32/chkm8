@@ -48,9 +48,6 @@ export default function OnboardingScreen( {navigation} ) {
     }
 
     return (
-
-
-
         <View style={styles.background}>
             {currentScreen}
             <View style={styles.buttonContainer}>

@@ -7,6 +7,7 @@ import {  createStackNavigator } from '@react-navigation/stack';
 import { useFonts } from 'expo-font';
 import { Image, LogBox } from 'react-native';
 import * as storage from './Storage';
+import AppLoading from 'expo-app-loading';
 
 // Screens
 import HomeScreen from './components/screens/HomeScreen';
@@ -22,6 +23,7 @@ import OnboardingScreen from "./components/screens/OnboardingScreen";
 export default function App() {
 
     const [initialScreen, setInitialScreen] = useState('Onboarding');
+    const [isReady, setReady] = useState(false);
 
     const Stack = createStackNavigator();
     // LogBox.ignoreAllLogs(true);
@@ -33,21 +35,29 @@ export default function App() {
         console.log("clearing storage");
         await storage.clear();
     }
-    clearStorage();
+    //clearStorage();
 
-    useEffect(() => {
-        let getOnboardedData = async () => {
-            let isOnboarded = await storage.get('onboarded');
-            if (isOnboarded == null || isOnboarded == false) {
-                console.log("Show one time screen set to true");
-                setInitialScreen('Onboarding');
-            } else {
-                console.log("Show one time screen set to false");
-                setInitialScreen('Home');
-            }
+    const getOnboardedData = async () => {
+        let isOnboarded = await storage.get('onboarded');
+        if (isOnboarded == null || isOnboarded == false) {
+            console.log("Show one time screen set to true");
+            setInitialScreen('Onboarding');
+        } else {
+            console.log("Show one time screen set to false");
+            setInitialScreen('Home');
         }
-        getOnboardedData();
-    }, []);
+    }
+    
+    if (!isReady) {
+        return (
+            <AppLoading
+                startAsync={getOnboardedData}
+                onFinish={() => setReady(true)}
+                onError={console.warn}
+            />
+        )
+    }
+
     return (
         <NavigationContainer>
             <Stack.Navigator initialRouteName={initialScreen} screenOptions={{
@@ -58,10 +68,9 @@ export default function App() {
                     return(
                         <Image style={{marginLeft: 15, marginTop: 20}} source={require('./assets/back.png')}/>
                     )
-                },
-                gestureEnabled: false
+                }
             }}>
-                <Stack.Screen name='Onboarding' component={OnboardingScreen} />
+                <Stack.Screen name='Onboarding' component={OnboardingScreen} options={{headerShown: false}}/>
                 <Stack.Screen name='Home' component={HomeScreen} options={{headerShown: false}}/>
                 <Stack.Screen name='Profile' component={ProfileScreen} />
                 <Stack.Screen name='Reflection' component={ReflectionScreen} />

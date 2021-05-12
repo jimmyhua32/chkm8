@@ -7,8 +7,8 @@ import * as storage from "../../Storage";
 const assetsRoot = '../../assets/';
 
 export default function HomeScreen( {navigation} ) {
-    let on = require(assetsRoot + 'reflect.png');
-    let off = require(assetsRoot + 'reflect-off.png');
+    let on = images.icons.reflect;
+    let off = images.icons["reflect-grey"];
     let time = new Date().getHours();
     let stringTime = "day"; // default
     if (time >= 5 && time < 9) {
@@ -33,18 +33,27 @@ export default function HomeScreen( {navigation} ) {
     let front = images.leafy[key + "f"];
     let back = images.leafy[key + "b"];
 
-    // state is asychronous so need to update logic to reflect that; render is always showing previous state
+    let journey = images.icons.journey;
+    let rest = images.icons.rest;
 
     const [reflect, toggleReflect] = useState(false);
     const [reflectImg, changeImg] = useState(off);
     const [bgImg, changeBg] = useState(background);
     const [leafy, changeLeafy] = useState(back);
+    const [resticon, changeIcon] = useState(rest);
 
     useMemo(() => {
         front = images.leafy[key + "f"];
         back = images.leafy[key + "b"];
-        changeLeafy(back); 
+        changeLeafy(reflect ? front : back); 
     }, [key]);
+
+    useMemo(() => {
+        changeImg(reflect ? on : off);
+        changeBg(reflect ? camp : background);
+        changeLeafy(reflect ? front : back);
+        changeIcon(reflect ? journey : rest);
+    }, [reflect]);
 
     return (
         <View style={styles.screenView}>
@@ -52,21 +61,18 @@ export default function HomeScreen( {navigation} ) {
                 <Image style={styles.character} source={leafy} key={leafy}/>
                 <View style={styles.buttonBar}>
                     <TouchableOpacity title="Profile" onPress={() => {navigation.navigate("Profile")}}>
-                        <Image style={styles.menuButton} source={require(assetsRoot + 'profile.png')}/>
+                        <Image style={styles.menuButton} source={images.icons.profile}/>
                     </TouchableOpacity>
                     <TouchableOpacity title="Rest"
                         onPress={() => {
                             toggleReflect(!reflect);
-                            changeImg(reflect ? on : off);
-                            changeBg(reflect ? camp : background);
-                            changeLeafy(reflect ? front : back);
                         }
                     }>
-                        <Image style={styles.menuButton} source={require(assetsRoot + "rest.png")}/>
+                        <Image style={styles.menuButton} source={resticon}/>
                     </TouchableOpacity>
                     <TouchableOpacity title="Reflect"
                         onPress={() => {
-                            if (!reflect) { // literally makes no sense
+                            if (reflect) { 
                                 navigation.navigate("Reflection");
                             }
                         }

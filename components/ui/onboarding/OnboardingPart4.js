@@ -1,5 +1,5 @@
 import React from "react";
-import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet, Image, TouchableOpacity, Platform} from 'react-native';
 import SpeechBubble from "./SpeechBubble";
 import * as images from "../../../Images";
 
@@ -18,35 +18,52 @@ export default function OnboardingPart4(props) {
                 </View>
             </View>
 
-            <View style={styles.statsFlexBox}>
-                <View style={styles.columnFlex}>
-                    <Text style={[styles.statsNumber, styles.statReflections]}>17</Text>
-                    <Text style={[styles.statsLabel, styles.statReflections]}>Reflections</Text>
+            <View style={styles.spacer}>
+                <View style={styles.statsFlexBox}>
+                    <View style={styles.columnFlex}>
+                        <Text style={[styles.statsNumber, styles.statReflections]}>17</Text>
+                        <Text style={[styles.statsLabel, styles.statReflections]}>Reflections</Text>
+                    </View>
+                    <View style={styles.separator}></View>
+                    <View style={styles.columnFlex}>
+                        <Text style={[styles.statsNumber, styles.statSeeds]}>170</Text>
+                        <Text style={[styles.statsLabel, styles.statSeeds]}>Seeds</Text>
+                    </View>
                 </View>
-                <View style={styles.separator}></View>
-                <View style={styles.columnFlex}>
-                    <Text style={[styles.statsNumber, styles.statSeeds]}>170</Text>
-                    <Text style={[styles.statsLabel, styles.statSeeds]}>Seeds</Text>
+
+                <View style={styles.panelFlexBox}>
+                    <View style={styles.panelButton}>
+                        <Image source={images.icons['reflect-inverted']} style={styles.panelButtonIcon}/>
+                        <Text style={styles.panelButtonText}>Past Reflections</Text>
+                    </View>
+
+                    <View style={styles.panelButton}>
+                        <Image source={images.icons.customize} style={styles.panelButtonIcon}/>
+                        <Text style={styles.panelButtonText}>Accessories</Text>
+                    </View>
                 </View>
             </View>
 
-            <View style={styles.panelFlexBox}>
-                <View style={styles.panelButton}>
-                    <Image source={images.icons.reflect} style={styles.panelButtonIcon}/>
-                    <Text style={styles.panelButtonText}>Past Reflections</Text>
-                </View>
-
-                <View style={styles.panelButton}>
-                    <Image source={images.icons.customize} style={styles.panelButtonIcon}/>
-                    <Text style={styles.panelButtonText}>Accessories</Text>
-                </View>
-            </View>
         </View>
 
     );
 }
 
 const styles = StyleSheet.create({
+    spacer: {
+        ...Platform.select({
+            ios: {
+                marginTop: 0
+            },
+            android: {
+                marginTop: 5
+            },
+            default: {
+                marginTop: 5
+            }
+        })
+
+    },
     statsFlexBox: {
         flexDirection:'row',
         flexWrap: 'nowrap',
@@ -60,7 +77,7 @@ const styles = StyleSheet.create({
     },
     statReflections: {
         color: '#F3C644',
-        textAlign: 'center',
+        textAlign: 'center'
     },
     statSeeds: {
         fontFamily: 'Montserrat-Alternates',
@@ -87,9 +104,10 @@ const styles = StyleSheet.create({
         justifyContent: 'space-evenly'
     },
     panelButton: {
-        margin: 10,
-        width: 150,
-        height: 150,
+        margin: 20,
+        padding: 10,
+        width: 140,
+        height: 140,
         borderRadius: 40,
         backgroundColor: '#80A2C5',
         flexDirection:'column',
@@ -98,7 +116,7 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     panelButtonIcon: {
-        margin: 'auto',
+        margin: 'auto'
     },
     panelButtonText: {
         margin: 'auto',
@@ -106,7 +124,8 @@ const styles = StyleSheet.create({
         fontFamily: 'Montserrat-Alternates',
         fontSize: 15,
         color: 'white',
-        width: '100%'
+        width: '100%',
+        paddingTop: 5
     },
     leafySmall: {
         width: 60,
@@ -164,7 +183,7 @@ const styles = StyleSheet.create({
         width: '100%'
     },
     mountainContainer: {
-        marginTop: 50
+        marginTop: 20
     },
     buttonContainer: {
         marginTop: 200
@@ -185,9 +204,20 @@ const styles = StyleSheet.create({
         width: '100%',
         margin: 'auto',
         position: 'absolute',
-        top: 140,
+
         left: 0,
         right: 0,
-        bottom: 0
+        bottom: 0,
+        ...Platform.select({
+            ios: {
+                top: 100,
+            },
+            android: {
+                top: 140,
+            },
+            default: {
+                top: 120,
+            }
+        })
     }
 });

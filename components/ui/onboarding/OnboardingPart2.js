@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
         width: '100%'
     },
     mountainContainer: {
-        marginTop: 50
+        marginTop: 20
     },
     buttonContainer: {
         marginTop: 200

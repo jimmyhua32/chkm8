@@ -1,5 +1,5 @@
 import React from "react";
-import {View, Text, StyleSheet, Image} from 'react-native';
+import {View, Text, StyleSheet, Image, Platform} from 'react-native';
 import SpeechBubble from "./SpeechBubble";
 import * as images from "../../../Images";
 
@@ -17,7 +17,9 @@ export default function OnboardingPart3(props) {
                 <View style={styles.leftAlign}>
                     <Image source={images.leafy['leafy-0f']} style={styles.leafySmall}/>
                 </View>
+            </View>
 
+            <View style={styles.singleColumn2}>
                 <View style={styles.iconInfoPill}>
                     <Image source={images.icons['profile']} style={styles.icon}/>
                     <Text style={styles.p2}>This is your profile. Access this to view previous reflections and explore some accessories.</Text>
@@ -55,7 +57,7 @@ const styles = StyleSheet.create({
         margin: 'auto',
         backgroundColor: '#FFFFFF',
         borderRadius: 50,
-        marginBottom: 40
+        marginBottom: 10
     },
     leafySmall: {
         width: 60,
@@ -102,17 +104,38 @@ const styles = StyleSheet.create({
         color: '#80A2C5'
     },
     bold2: {
-        fontSize: 14,
         fontFamily: 'Montserrat-Alternates-Bold',
         padding: 20,
         color: '#80A2C5',
+        ...Platform.select({
+            ios: {
+                fontSize: 12,
+            },
+            android: {
+                fontSize: 14,
+            },
+            default: {
+                fontSize: 12,
+            }
+        })
     },
     p2: {
-        fontSize: 14,
         width: 250,
         fontFamily: 'Montserrat-Alternates',
         padding: 20,
-        color: '#80A2C5'
+        marginRight: 13,
+        color: '#80A2C5',
+        ...Platform.select({
+            ios: {
+                fontSize: 12,
+            },
+            android: {
+                fontSize: 14,
+            },
+            default: {
+                fontSize: 12,
+            }
+        })
     },
     titleContainer: {
         position: 'absolute',
@@ -147,7 +170,31 @@ const styles = StyleSheet.create({
         width: '100%',
         margin: 'auto',
         position: 'absolute',
-        top: 140,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        ...Platform.select({
+            ios: {
+                top: "7%",
+            },
+            android: {
+                top: "15%",
+            },
+            default: {
+                top: "7%",
+            }
+        })
+    },
+    singleColumn2: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'flex-start',
+        flexWrap: 'nowrap',
+        alignItems: 'center',
+        width: '100%',
+        margin: 'auto',
+        position: 'absolute',
+        top: "40%",
         left: 0,
         right: 0,
         bottom: 0

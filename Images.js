@@ -46,5 +46,6 @@ export const icons = {
     "customize" : require(assetsRoot + "customize.png"),
     "profile-no-shadow" : require(assetsRoot + "profile-no-shadow.png"),
     "reflect-no-shadow" : require(assetsRoot + "reflect-no-shadow.png"),
+    "reflect-inverted" : require(assetsRoot + "reflect-inverted.png"),
     "rest-no-shadow" : require(assetsRoot + "rest-no-shadow.png"),
 }

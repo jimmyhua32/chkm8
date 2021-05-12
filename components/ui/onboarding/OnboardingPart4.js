@@ -18,35 +18,41 @@ export default function OnboardingPart4(props) {
                 </View>
             </View>
 
-            <View style={styles.statsFlexBox}>
-                <View style={styles.columnFlex}>
-                    <Text style={[styles.statsNumber, styles.statReflections]}>17</Text>
-                    <Text style={[styles.statsLabel, styles.statReflections]}>Reflections</Text>
+            <View style={styles.spacer}>
+                <View style={styles.statsFlexBox}>
+                    <View style={styles.columnFlex}>
+                        <Text style={[styles.statsNumber, styles.statReflections]}>17</Text>
+                        <Text style={[styles.statsLabel, styles.statReflections]}>Reflections</Text>
+                    </View>
+                    <View style={styles.separator}></View>
+                    <View style={styles.columnFlex}>
+                        <Text style={[styles.statsNumber, styles.statSeeds]}>170</Text>
+                        <Text style={[styles.statsLabel, styles.statSeeds]}>Seeds</Text>
+                    </View>
                 </View>
-                <View style={styles.separator}></View>
-                <View style={styles.columnFlex}>
-                    <Text style={[styles.statsNumber, styles.statSeeds]}>170</Text>
-                    <Text style={[styles.statsLabel, styles.statSeeds]}>Seeds</Text>
+
+                <View style={styles.panelFlexBox}>
+                    <View style={styles.panelButton}>
+                        <Image source={images.icons['reflect-inverted']} style={styles.panelButtonIcon}/>
+                        <Text style={styles.panelButtonText}>Past Reflections</Text>
+                    </View>
+
+                    <View style={styles.panelButton}>
+                        <Image source={images.icons.customize} style={styles.panelButtonIcon}/>
+                        <Text style={styles.panelButtonText}>Accessories</Text>
+                    </View>
                 </View>
             </View>
 
-            <View style={styles.panelFlexBox}>
-                <View style={styles.panelButton}>
-                    <Image source={images.icons.reflect} style={styles.panelButtonIcon}/>
-                    <Text style={styles.panelButtonText}>Past Reflections</Text>
-                </View>
-
-                <View style={styles.panelButton}>
-                    <Image source={images.icons.customize} style={styles.panelButtonIcon}/>
-                    <Text style={styles.panelButtonText}>Accessories</Text>
-                </View>
-            </View>
         </View>
 
     );
 }
 
 const styles = StyleSheet.create({
+    spacer: {
+        marginTop: 15
+    },
     statsFlexBox: {
         flexDirection:'row',
         flexWrap: 'nowrap',
@@ -60,7 +66,7 @@ const styles = StyleSheet.create({
     },
     statReflections: {
         color: '#F3C644',
-        textAlign: 'center',
+        textAlign: 'center'
     },
     statSeeds: {
         fontFamily: 'Montserrat-Alternates',
@@ -98,7 +104,7 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     panelButtonIcon: {
-        margin: 'auto',
+        margin: 'auto'
     },
     panelButtonText: {
         margin: 'auto',
@@ -106,7 +112,8 @@ const styles = StyleSheet.create({
         fontFamily: 'Montserrat-Alternates',
         fontSize: 15,
         color: 'white',
-        width: '100%'
+        width: '100%',
+        paddingTop: 5
     },
     leafySmall: {
         width: 60,
@@ -164,7 +171,7 @@ const styles = StyleSheet.create({
         width: '100%'
     },
     mountainContainer: {
-        marginTop: 50
+        marginTop: 20
     },
     buttonContainer: {
         marginTop: 200

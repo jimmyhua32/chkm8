@@ -155,7 +155,7 @@ const styles = StyleSheet.create({
         bottom: 0,
         ...Platform.select({
             ios: {
-                top: "5%",
+                top: "7%",
             },
             android: {
                 top: "15%",

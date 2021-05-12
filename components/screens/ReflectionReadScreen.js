@@ -1,22 +1,53 @@
-import React, {useState} from "react";
+import React, {useMemo, useState} from "react";
 import {View, Text, Button, StyleSheet, TextInput} from 'react-native';
 
 export default function ReflectionReadScreen(props) {
 
+    const [date, setDate] = useState(props.route.params.date);
+    const [body, setBody] = useState(props.route.params.body);
+    const [index, setIndex] = useState(props.route.params.index);
+
     const monthNames = ["January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"
     ];
-    let date = new Date(props.route.params.date);
+    let dateObj = new Date(date);
     // date function 'toLocaleString' would be perfect but it doesn't work on RN android
-    let dateString = monthNames[date.getMonth()] + " " + 
-        date.getDate() + " " +
-        date.getFullYear();
+    let dateString = monthNames[dateObj.getMonth()] + " " + 
+        dateObj.getDate() + ", " +
+        dateObj.getFullYear();
+
+    let reflections = props.route.params.reflections;
+
+    useMemo(() => {
+        let ref = reflections[index];
+        setDate(ref.datetime);
+        setBody(ref.entry);
+    }, [index]);
+
+    console.log(reflections);
 
     return (
         <View style={styles.previewContainer}>
             <Text style={styles.title}>{dateString}</Text>
+            <View style={styles.btnContainer}>
+                <Button style={styles.left} title='left' onPress={
+                    () => {
+                        if (index < reflections.length - 1) {
+                            setIndex(index + 1);
+                        }
+                        
+                    }
+                }/>
+                <Button style={styles.right} title='right' onPress={
+                    () => {
+                        if (index > 0) {
+                            setIndex(index - 1);
+                        }
+                    }
+                }/>
+            </View>
             <View style={styles.whiteBackground}>
-                <Text style={styles.p1}>{props.route.params.body}</Text>
+                <Text style={styles.p1}>{body}</Text>
             </View>
         </View>
     );
@@ -25,7 +56,6 @@ export default function ReflectionReadScreen(props) {
 const styles = StyleSheet.create({
     previewContainer: {
         margin: 'auto',
-        paddingTop: 20,
         flex: 1,
         alignItems: 'center',
         backgroundColor: '#DEEFFF'
@@ -53,4 +83,17 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%'
     },
+    btnContainer: {
+        width: '100%',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        paddingHorizontal: '5%',
+        marginBottom: '5%'
+    },
+    left: {
+        alignSelf: 'flex-start'
+    },
+    right: {
+        alignSelf: 'flex-end'
+    }
 });

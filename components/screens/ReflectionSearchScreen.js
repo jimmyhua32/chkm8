@@ -22,7 +22,14 @@ export default function ReflectionSearchScreen( {navigation} ) {
         });
     });
 
-    let reflectionPreviews = reflections.map(item => <ReflectionPreview key={item.datetime} date={item.datetime} body={item.entry} nav={navigation}/>);
+    let reflectionPreviews = [];
+
+    for (let i = 0; i < reflections.length; i++) {
+        let item = reflections[i];
+        reflectionPreviews.push(<ReflectionPreview index={i} reflections={reflections} key={item.datetime} date={item.datetime} body={item.entry} nav={navigation}/>);
+    }
+
+    //let reflectionPreviews = reflections.map(item => <ReflectionPreview key={item.datetime} date={item.datetime} body={item.entry} nav={navigation}/>);
 
     return (
         <View style={styles.container}>

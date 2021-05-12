@@ -31,6 +31,7 @@ export default function App() {
     useFonts({'Montserrat-Alternates': require('./assets/fonts/MontserratAlternates-Medium.ttf')});
     useFonts({'Montserrat-Alternates-Bold': require('./assets/fonts/MontserratAlternates-Bold.ttf')});
 
+    // purely for testing
     const clearStorage = async () => {
         console.log("clearing storage");
         await storage.clear();
@@ -47,7 +48,7 @@ export default function App() {
             setInitialScreen('Home');
         }
     }
-    
+
     if (!isReady) {
         return (
             <AppLoading

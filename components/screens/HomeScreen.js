@@ -4,8 +4,6 @@ import {View, Text, Button, StyleSheet, Image, ImageBackground, TouchableOpacity
 import * as images from "../../Images";
 import * as storage from "../../Storage";
 
-const assetsRoot = '../../assets/';
-
 export default function HomeScreen( {navigation} ) {
     let on = images.icons.reflect;
     let off = images.icons["reflect-grey"];

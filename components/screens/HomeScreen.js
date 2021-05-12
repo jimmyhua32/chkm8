@@ -1,14 +1,12 @@
 import { useFocusEffect } from "@react-navigation/native";
-import React, {useState} from "react";
+import React, {useState, useMemo} from "react";
 import {View, Text, Button, StyleSheet, Image, ImageBackground, TouchableOpacity, Platform} from 'react-native';
 import * as images from "../../Images";
 import * as storage from "../../Storage";
 
-const assetsRoot = '../../assets/';
-
 export default function HomeScreen( {navigation} ) {
-    let on = require(assetsRoot + 'reflect.png');
-    let off = require(assetsRoot + 'reflect-off.png');
+    let on = images.icons.reflect;
+    let off = images.icons["reflect-grey"];
     let time = new Date().getHours();
     let stringTime = "day"; // default
     if (time >= 5 && time < 9) {
@@ -22,7 +20,7 @@ export default function HomeScreen( {navigation} ) {
     }
     let background = images.reflectBackground[stringTime];
     let camp = images.reflectCampBackground[stringTime + "-camp"];
-    const [key, changeKey] = useState("leafy-0");
+    const [key, changeKey] = useState("");
     useFocusEffect(() => {
         storage.getOrDefault("cur_accessory", 0).then(
             (results) => {
@@ -33,44 +31,51 @@ export default function HomeScreen( {navigation} ) {
     let front = images.leafy[key + "f"];
     let back = images.leafy[key + "b"];
 
+    let journey = images.icons.journey;
+    let rest = images.icons.rest;
+
     const [reflect, toggleReflect] = useState(false);
-    const [reflectImg, changeImg] = useState(reflect ? on : off);
-    const [bgImg, changeBg] = useState(reflect ? camp : background);
-    const [leafy, changeLeafy] = useState(reflect ? front : back);
+    const [reflectImg, changeImg] = useState(off);
+    const [bgImg, changeBg] = useState(background);
+    const [leafy, changeLeafy] = useState(back);
+    const [resticon, changeIcon] = useState(rest);
+
+    useMemo(() => {
+        front = images.leafy[key + "f"];
+        back = images.leafy[key + "b"];
+        changeLeafy(reflect ? front : back); 
+    }, [key]);
+
+    useMemo(() => {
+        changeImg(reflect ? on : off);
+        changeBg(reflect ? camp : background);
+        changeLeafy(reflect ? front : back);
+        changeIcon(reflect ? journey : rest);
+    }, [reflect]);
 
     return (
         <View style={styles.screenView}>
-            {/*
-                <View style={{alignSelf: 'flex-start'}}>
-                <Button
-                    title="Options"
-                />
-            </View>
-            */}
             <ImageBackground style={styles.backgroundContainer} source={bgImg}>
-                <Image style={styles.character} source={leafy}/>
+                <Image style={styles.character} source={leafy} key={leafy}/>
                 <View style={styles.buttonBar}>
-                    <TouchableOpacity style={styles.menuButton}title="Profile" onPress={() => {navigation.navigate("Profile")}}>
-                        <Image source={require(assetsRoot + 'profile.png')}/>
+                    <TouchableOpacity title="Profile" onPress={() => {navigation.navigate("Profile")}}>
+                        <Image style={styles.menuButton} source={images.icons.profile}/>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.menuButton} title="Rest"
+                    <TouchableOpacity title="Rest"
                         onPress={() => {
                             toggleReflect(!reflect);
-                            changeImg(reflect ? on : off);
-                            changeBg(reflect ? camp : background);
-                            changeLeafy(reflect ? front : back);
                         }
                     }>
-                        <Image source={require(assetsRoot + "rest.png")}/>
+                        <Image style={styles.menuButton} source={resticon}/>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.menuButton} title="Reflect"
+                    <TouchableOpacity title="Reflect"
                         onPress={() => {
-                            if (!reflect) { // literally makes no sense
+                            if (reflect) { 
                                 navigation.navigate("Reflection");
                             }
                         }
                     }>
-                        <Image source={reflectImg}/>
+                        <Image style={styles.menuButton} source={reflectImg}/>
                     </TouchableOpacity>
                 </View>
             </ImageBackground>
@@ -101,6 +106,9 @@ const styles = StyleSheet.create({
     character: {
         alignSelf: 'center',
         justifyContent: 'flex-end',
+        resizeMode: 'contain',
+        height: '18%',
+        minHeight: '18%',
         ...Platform.select({
             ios: {
                 marginTop: '110%',
@@ -112,6 +120,9 @@ const styles = StyleSheet.create({
                 marginTop: '110%',
             }
         })
-
+    },
+    menuButton: {
+        maxHeight: '85%',
+        resizeMode: 'contain'
     }
 });

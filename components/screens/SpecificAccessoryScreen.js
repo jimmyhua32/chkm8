@@ -32,8 +32,6 @@ export default function SpecificAccessoryScreen(props) {
                 onPress= {async () => {
                     let acc = await storage.getOrDefault("cur_accessory", 0);
                     let owned = await storage.getOrDefault("accessories", [0]);
-                    console.log(acc);
-                    console.log(owned);
                     if (acc != item.id && owned.includes(item.id)) {
                         storage.set("cur_accessory", item.id);
                         Alert.alert("Changed accessory to " + item.name);
@@ -41,12 +39,11 @@ export default function SpecificAccessoryScreen(props) {
                         Alert.alert("Already equipped " + item.name);
                     } else if (!owned.includes(item.id)) {
                         let seeds = await storage.get("seeds");
-                        console.log("seeds: " + seeds);
                         if (seeds >= item.cost) {
                             storage.set("seeds", seeds - item.cost);
                             owned.push(item.id);
                             storage.set("accessories", owned);
-                            Alert.alert("Purchased " + item.name);
+                            Alert.alert("Purchased " + item.name + " for " + item.cost + " seeds!");
                         } else {
                             Alert.alert("Not enough seeds!");
                         }

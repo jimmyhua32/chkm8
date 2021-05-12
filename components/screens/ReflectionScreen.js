@@ -5,7 +5,7 @@ import WidePillButton from "../../components/ui/custom/WidePillButton";
 import * as storage from '../../Storage';
 
 export default function ReflectionScreen( {navigation} ) {
-    const [reflectionText, onChangeReflectionText] = useState('What\'s on your mind?');
+    const [reflectionText, onChangeReflectionText] = useState('');
 
     const [reflectionMood, onChangeReflectionMood] = useState('Normal');
 
@@ -74,6 +74,7 @@ export default function ReflectionScreen( {navigation} ) {
                     multiline
                     numberOfLines={10}
                     blurOnSubmit={true}
+                    placeholder = "Today was a pretty good day!"
                     onSubmitEditing={()=>{Keyboard.dismiss()}}
                 />
 

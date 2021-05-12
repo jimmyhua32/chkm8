@@ -43,7 +43,10 @@ export default function OnboardingScreen( {navigation} ) {
             break;
         case 6:
             storage.set('onboarded', true);
-            navigation.navigate("Home");
+            navigation.reset({
+                index: 0,
+                routes: [{name: "Home"}]
+            });
             break;
     }
 

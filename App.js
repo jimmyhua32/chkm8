@@ -26,7 +26,7 @@ export default function App() {
     const [isReady, setReady] = useState(false);
 
     const Stack = createStackNavigator();
-    // LogBox.ignoreAllLogs(true);
+    LogBox.ignoreAllLogs(true);
 
     useFonts({'Montserrat-Alternates': require('./assets/fonts/MontserratAlternates-Medium.ttf')});
     useFonts({'Montserrat-Alternates-Bold': require('./assets/fonts/MontserratAlternates-Bold.ttf')});
@@ -36,9 +36,9 @@ export default function App() {
         console.log("clearing storage");
         await storage.clear();
     }
-    //clearStorage();
+    clearStorage();
 
-    const getOnboardedData = async () => {
+    const loadData = async () => {
         let isOnboarded = await storage.get('onboarded');
         if (isOnboarded == null || isOnboarded == false) {
             console.log("Show one time screen set to true");
@@ -52,7 +52,7 @@ export default function App() {
     if (!isReady) {
         return (
             <AppLoading
-                startAsync={getOnboardedData}
+                startAsync={loadData}
                 onFinish={() => setReady(true)}
                 onError={console.warn}
             />

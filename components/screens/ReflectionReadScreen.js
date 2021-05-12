@@ -24,8 +24,6 @@ export default function ReflectionReadScreen(props) {
         setBody(ref.entry);
     }, [index]);
 
-    console.log(reflections);
-
     return (
         <View style={styles.previewContainer}>
             <Text style={styles.title}>{dateString}</Text>

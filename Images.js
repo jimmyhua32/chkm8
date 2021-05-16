@@ -62,4 +62,13 @@ export const icons = {
     "reflect-no-shadow" : require(assetsRoot + "reflect-no-shadow.png"),
     "reflect-inverted" : require(assetsRoot + "reflect-inverted.png"),
     "rest-no-shadow" : require(assetsRoot + "rest-no-shadow.png"),
+    "mood-happy": require(assetsRoot + "mood/mood-icon-happy.png"),
+    "mood-neutral": require(assetsRoot + "mood/mood-icon-neutral.png"),
+    "mood-sad": require(assetsRoot + "mood/mood-icon-sad.png"),
+    "mood-happy-sign": require(assetsRoot + "mood/mood-sign-happy.png"),
+    "mood-neutral-sign": require(assetsRoot + "mood/mood-sign-neutral.png"),
+    "mood-sad-sign": require(assetsRoot + "mood/mood-sign-sad.png"),
+    "mood-happy-leafy": require(assetsRoot + "mood/mood-leafy-happy.png"),
+    "mood-neutral-leafy": require(assetsRoot + "mood/mood-leafy-neutral.png"),
+    "mood-sad-leafy": require(assetsRoot + "mood/mood-leafy-sad.png"),
 }

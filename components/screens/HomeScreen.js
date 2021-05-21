@@ -71,7 +71,7 @@ export default function HomeScreen( {navigation} ) {
                     <TouchableOpacity title="Reflect"
                         onPress={() => {
                             if (reflect) { 
-                                navigation.navigate("Reflection");
+                                navigation.navigate("ReflectionMoodScreen");
                             }
                         }
                     }>

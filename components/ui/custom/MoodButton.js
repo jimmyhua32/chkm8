@@ -1,21 +1,19 @@
 import React from "react";
-import { View, Button, StyleSheet, TouchableOpacity, Text } from "react-native";
+import {View, Button, StyleSheet, TouchableOpacity, Text, Image} from "react-native";
 
-const MoodButton = ({ onPress, title }) => (
+const MoodButton = ({ onPress, image}) => (
     <TouchableOpacity
         activeOpacity={0.8}
         onPress={onPress}
         style={styles.appButtonContainer}
     >
-        <Text style={styles.appButtonText}>{title}</Text>
+        <Image source={image}/>
     </TouchableOpacity>
 );
 
 const styles = StyleSheet.create({
     appButtonContainer: {
-        elevation: 8,
-        backgroundColor: "#009688",
-        borderRadius: 25,
+        borderRadius: 0,
         padding: 10,
         //display: 'inline-block'
     },

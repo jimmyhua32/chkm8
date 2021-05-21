@@ -17,8 +17,8 @@ import ReflectionSearchScreen from "./components/screens/ReflectionSearchScreen"
 import ReflectionReadScreen from './components/screens/ReflectionReadScreen';
 import AccessoryScreen from './components/screens/AccessoryScreen';
 import SpecificAccessoryScreen from './components/screens/SpecificAccessoryScreen';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import OnboardingScreen from "./components/screens/OnboardingScreen";
+import MoodScreen from './components/screens/MoodScreen';
 
 export default function App() {
 
@@ -83,6 +83,7 @@ export default function App() {
                 <Stack.Screen name='Reflection' component={ReflectionScreen} />
                 <Stack.Screen name='ReflectionSearch' component={ReflectionSearchScreen} />
                 <Stack.Screen name='ReflectionReadScreen' component={ReflectionReadScreen} />
+                <Stack.Screen name='ReflectionMoodScreen' component={MoodScreen} />
                 <Stack.Screen name='Accessories' component={AccessoryScreen} />
                 <Stack.Screen name='SpecificAccessory' component={SpecificAccessoryScreen} />
             </Stack.Navigator>

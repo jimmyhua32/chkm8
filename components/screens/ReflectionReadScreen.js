@@ -1,5 +1,5 @@
 import React, {useMemo, useState} from "react";
-import {View, Text, Image, StyleSheet} from 'react-native';
+import {View, Text, Image, StyleSheet, TextInput, ScrollView} from 'react-native';
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 export default function ReflectionReadScreen(props) {
@@ -13,7 +13,7 @@ export default function ReflectionReadScreen(props) {
     ];
     let dateObj = new Date(date);
     // date function 'toLocaleString' would be perfect but it doesn't work on RN android
-    let dateString = monthNames[dateObj.getMonth()] + " " + 
+    let dateString = monthNames[dateObj.getMonth()] + " " +
         dateObj.getDate() + ", " +
         dateObj.getFullYear();
 
@@ -37,7 +37,7 @@ export default function ReflectionReadScreen(props) {
                         if (index < reflections.length - 1) {
                             setIndex(index + 1);
                         }
-                        
+
                     }
                 }>
                     <Image source={require('../../assets/left.png')}/>
@@ -52,6 +52,9 @@ export default function ReflectionReadScreen(props) {
                     <Image source={require('../../assets/right.png')}/>
                 </TouchableOpacity>
             </View>
+            <ScrollView style={styles.whiteBackground}>
+                <Text style={styles.p1}>{body}</Text>
+            </ScrollView>
         </View>
     );
 }
@@ -76,13 +79,12 @@ const styles = StyleSheet.create({
         fontSize: 18,
         padding: 50,
         fontFamily: 'Montserrat-Alternates',
-        width: '80%',
         margin: 'auto'
     },
     whiteBackground: {
         flex: 8,
         backgroundColor: '#fff',
-        borderRadius: 20,
+        borderRadius: 50,
         marginBottom: '5%',
         width: '100%',
         height: '100%'

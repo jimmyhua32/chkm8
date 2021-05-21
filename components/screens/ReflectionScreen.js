@@ -2,12 +2,20 @@ import React, {useState} from "react";
 import {View, Text, Button, StyleSheet, TextInput, ScrollView, Keyboard, TouchableWithoutFeedback} from 'react-native';
 import MoodButton from '../../components/ui/custom/MoodButton';
 import WidePillButton from "../../components/ui/custom/WidePillButton";
+import ReflectionInput from "../ui/custom/ReflectionInput";
+import TitleInput from "../ui/custom/TitleInput";
 import * as storage from '../../Storage';
 
-export default function ReflectionScreen( {navigation} ) {
+export default function ReflectionScreen( {route, navigation} ) {
     const [reflectionText, onChangeReflectionText] = useState('');
+    const [reflectionTitle, onChangeReflectionTitle] = useState('');
 
-    const [reflectionMood, onChangeReflectionMood] = useState('Normal');
+    // ex: April 30th, 2021
+    let curDate = dateFormat(new Date());
+
+    // mood is passed in with navigation object from MoodScreen.js, reference with 'route.params.mood'
+
+
 
     const DismissKeyboard = ({ children }) => (
         <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
@@ -30,14 +38,17 @@ export default function ReflectionScreen( {navigation} ) {
                     {
                         entry: reflectionText,
                         datetime: Date.now(),
-                        mood: reflectionMood,
+                        mood: route.params.mood,
+                        title: reflectionTitle
                     }
                 ]
             })
         } else {
+
+            // If reflections exists, then add it to the existing reflection array
             let updatedReflections = currentReflections.reflections;
 
-            updatedReflections.push({entry: reflectionText, datetime: Date.now(), mood: reflectionMood});
+            updatedReflections.push({entry: reflectionText, datetime: Date.now(), mood: route.params.mood, title: reflectionTitle});
             await storage.set('reflectionData', {reflections: updatedReflections});
         }
 
@@ -55,41 +66,35 @@ export default function ReflectionScreen( {navigation} ) {
 
     return (
         <View style={styles.reflectionView}>
-            <Text style={[styles.title, styles.titlePrompt]}>Hey there, what's on your mind?</Text>
-            <View style={styles.moodButtonBox}>
-                {/*
-                <MoodButton title="1" onPress={() => {onChangeReflectionMood("1")}}/>
-                <MoodButton title="2" onPress={() => {onChangeReflectionMood("2")}}/>
-                <MoodButton title="3" onPress={() => {onChangeReflectionMood("3")}}/>
-                <MoodButton title="4" onPress={() => {onChangeReflectionMood("4")}}/>
-                <MoodButton title="5" onPress={() => {onChangeReflectionMood("5")}}/>
-                */}
-            </View>
-            <View style={styles.whiteBackground}>
-
-                <TextInput
-                    style={styles.reflectionBox}
-                    onChangeText={text => onChangeReflectionText(text)}
-                    value={reflectionText}
-                    multiline
-                    numberOfLines={10}
-                    blurOnSubmit={true}
-                    placeholder = "Today was a pretty good day!"
-                    onSubmitEditing={()=>{Keyboard.dismiss()}}
+            <Text style={styles.title}>{curDate}</Text>
+            <ReflectionInput onChange={onChangeReflectionTitle} inputText={reflectionTitle} numberOfLines={1} placeholder={"Enter Title..."}/>
+            <ReflectionInput onChange={onChangeReflectionText} inputText={reflectionText} numberOfLines={20} placeholder={"Today was a pretty good day!"}/>
+            <View style={styles.buttonContainer}>
+                <WidePillButton
+                    title="Done"
+                    onPress={submitReflection}
                 />
-
-
-                <View style={styles.buttonContainer}>
-                    <WidePillButton
-                        title="Done"
-                        onPress={submitReflection}
-                    />
-                </View>
-
             </View>
-
         </View>
     );
+}
+
+const dateFormat = (date) => {
+    const monthNames = ["January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    ];
+    let month = monthNames[date.getMonth()];
+    let day = date.getDate();
+    let dayLastNum = day.toString().charAt(day.toString().length - 1);
+    let placing = "th";
+    if (dayLastNum == '1') {
+        placing = "st";
+    } else if (dayLastNum == '2') {
+        placing = "nd";
+    } else if (dayLastNum == '3') {
+        placing = 'rd';
+    }
+    return month + " " + day + placing + ", " + date.getFullYear();
 }
 
 const styles = StyleSheet.create({
@@ -98,52 +103,23 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#BBD9F8',
         width: '100%',
-        height: '100%'
-    },
-    whiteBackground: {
-        backgroundColor: '#fff',
-        borderTopLeftRadius: 20,
-        borderTopRightRadius: 20,
-        width: '100%',
-        marginTop: '10%',
-        flex: 1,
-        justifyContent: 'space-between'
+        height: '100%',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        flexWrap: 'nowrap',
+        margin: 'auto',
+        paddingTop: 100
     },
     title: {
         fontSize: 24,
         textAlign: 'center',
-        fontFamily: 'Montserrat-Alternates',
+        fontFamily: 'Montserrat-Alternates-Bold',
         color: '#80A2C5',
-    },
-    titlePrompt: {
-        width: 300,
-        height: 'auto',
-        paddingBottom: 15,
-        paddingTop: 100,
-        fontWeight: '600',
-    },
-    p1: {
-        fontSize: 18,
-    },
-    reflectionBox: {
-        height: '85%',
-        borderWidth: 0,
-        margin: 'auto',
-        padding: 30,
-        //outlineWidth: 0,
-        fontFamily: 'Montserrat-Alternates',
-        textAlignVertical: 'top'
-
-    },
-    moodButtonBox: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'space-evenly',
-        alignItems: 'center',
-        width: 150
+        paddingBottom: 30
     },
     buttonContainer: {
-        paddingBottom: 50,
+        paddingTop: 25,
+        paddingBottom: 25,
         margin: 'auto',
         flex: 1,
         alignItems: 'center'

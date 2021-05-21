@@ -1,5 +1,5 @@
 import React, {useMemo, useState} from "react";
-import {View, Text, Button, StyleSheet, TextInput} from 'react-native';
+import {View, Text, Button, StyleSheet, TextInput, ScrollView} from 'react-native';
 
 export default function ReflectionReadScreen(props) {
 
@@ -12,7 +12,7 @@ export default function ReflectionReadScreen(props) {
     ];
     let dateObj = new Date(date);
     // date function 'toLocaleString' would be perfect but it doesn't work on RN android
-    let dateString = monthNames[dateObj.getMonth()] + " " + 
+    let dateString = monthNames[dateObj.getMonth()] + " " +
         dateObj.getDate() + ", " +
         dateObj.getFullYear();
 
@@ -33,7 +33,7 @@ export default function ReflectionReadScreen(props) {
                         if (index < reflections.length - 1) {
                             setIndex(index + 1);
                         }
-                        
+
                     }
                 }/>
                 <Button style={styles.right} title='right' onPress={
@@ -44,9 +44,9 @@ export default function ReflectionReadScreen(props) {
                     }
                 }/>
             </View>
-            <View style={styles.whiteBackground}>
+            <ScrollView style={styles.whiteBackground}>
                 <Text style={styles.p1}>{body}</Text>
-            </View>
+            </ScrollView>
         </View>
     );
 }
@@ -71,13 +71,12 @@ const styles = StyleSheet.create({
         fontSize: 18,
         padding: 50,
         fontFamily: 'Montserrat-Alternates',
-        width: '80%',
         margin: 'auto'
     },
     whiteBackground: {
         backgroundColor: '#fff',
-        borderTopLeftRadius: 20,
-        borderTopRightRadius: 20,
+        borderTopLeftRadius: 50,
+        borderTopRightRadius: 50,
         width: '100%',
         height: '100%'
     },

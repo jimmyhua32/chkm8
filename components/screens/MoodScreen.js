@@ -51,6 +51,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         flexWrap: 'nowrap',
         alignItems: 'center',
-        margin: 'auto'
+        margin: 'auto',
+        backgroundColor: '#BBD9F8',
     }
 })

@@ -26,7 +26,7 @@ export default function ReflectionSearchScreen( {navigation} ) {
 
     for (let i = 0; i < reflections.length; i++) {
         let item = reflections[i];
-        reflectionPreviews.push(<ReflectionPreview index={i} reflections={reflections} key={item.datetime} date={item.datetime} body={item.entry} mood={item.mood} title={"Fake title"} nav={navigation}/>);
+        reflectionPreviews.push(<ReflectionPreview index={i} reflections={reflections} key={item.datetime} date={item.datetime} body={item.entry} mood={item.mood} title={item.title} nav={navigation}/>);
     }
 
     //let reflectionPreviews = reflections.map(item => <ReflectionPreview key={item.datetime} date={item.datetime} body={item.entry} nav={navigation}/>);

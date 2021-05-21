@@ -2,13 +2,15 @@ import React, {useState} from "react";
 import {View, Text, Button, StyleSheet, TextInput, ScrollView, Keyboard, TouchableWithoutFeedback} from 'react-native';
 import MoodButton from '../../components/ui/custom/MoodButton';
 import WidePillButton from "../../components/ui/custom/WidePillButton";
+import ReflectionInput from "../ui/custom/ReflectionInput";
+import TitleInput from "../ui/custom/TitleInput";
 import * as storage from '../../Storage';
 
 export default function ReflectionScreen( {route, navigation} ) {
     const [reflectionText, onChangeReflectionText] = useState('');
     const [reflectionTitle, onChangeReflectionTitle] = useState('');
 
-    // April 30th, 2021
+    // ex: April 30th, 2021
     let curDate = dateFormat(new Date());
 
     // mood is passed in with navigation object from MoodScreen.js, reference with 'route.params.mood'
@@ -64,46 +66,15 @@ export default function ReflectionScreen( {route, navigation} ) {
 
     return (
         <View style={styles.reflectionView}>
-            <Text style={[styles.title, styles.titlePrompt, styles.bold]}>{curDate}</Text>
-            <TextInput
-                style={styles.titleBox}
-                onChangeText={text => onChangeReflectionTitle(text)}
-                value={reflectionTitle}
-                blurOnSubmit={true}
-                onSubmitEditing={()=>{Keyboard.dismiss()}}
-            />
-            {/*
-            <View style={styles.whiteBackground2}>
-                <TextInput
-                    style={styles.titleBox}
-                    onChangeText={text => onChangeReflectionTitle(text)}
-                    value={reflectionTitle}
-                    blurOnSubmit={true}
-                    onSubmitEditing={()=>{Keyboard.dismiss()}}
-                />
-            </View>
-
-            <View style={styles.whiteBackground}>
-                <TextInput
-                    style={styles.reflectionBox}
-                    onChangeText={text => onChangeReflectionText(text)}
-                    value={reflectionText}
-                    multiline
-                    numberOfLines={10}
-                    blurOnSubmit={true}
-                    placeholder = "Today was a pretty good day!"
-                    onSubmitEditing={()=>{Keyboard.dismiss()}}
-                />
-
-            </View>
-            */}
+            <Text style={styles.title}>{curDate}</Text>
+            <ReflectionInput onChange={onChangeReflectionTitle} inputText={reflectionTitle} numberOfLines={1} placeholder={"Enter Title..."}/>
+            <ReflectionInput onChange={onChangeReflectionText} inputText={reflectionText} numberOfLines={20} placeholder={"Today was a pretty good day!"}/>
             <View style={styles.buttonContainer}>
                 <WidePillButton
                     title="Done"
                     onPress={submitReflection}
                 />
             </View>
-
         </View>
     );
 }
@@ -113,7 +84,17 @@ const dateFormat = (date) => {
         "July", "August", "September", "October", "November", "December"
     ];
     let month = monthNames[date.getMonth()];
-    return month + " " + date.getDate() + ", " + date.getFullYear();
+    let day = date.getDate();
+    let dayLastNum = day.toString().charAt(day.toString().length - 1);
+    let placing = "th";
+    if (dayLastNum == '1') {
+        placing = "st";
+    } else if (dayLastNum == '2') {
+        placing = "nd";
+    } else if (dayLastNum == '3') {
+        placing = 'rd';
+    }
+    return month + " " + day + placing + ", " + date.getFullYear();
 }
 
 const styles = StyleSheet.create({
@@ -122,65 +103,19 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#BBD9F8',
         width: '100%',
-        height: '100%'
-    },
-    whiteBackground: {
-        backgroundColor: '#fff',
-        borderRadius: 20,
-        width: '80%',
-        marginTop: '10%',
-        flex: 1,
-    },
-    whiteBackground2: {
-        backgroundColor: '#fff',
-        borderRadius: 20,
-        width: '80%',
-        height: 10,
-        marginTop: '10%',
-        flex: 1,
+        height: '100%',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        flexWrap: 'nowrap',
+        margin: 'auto',
+        paddingTop: 100
     },
     title: {
         fontSize: 24,
         textAlign: 'center',
-        fontFamily: 'Montserrat-Alternates',
+        fontFamily: 'Montserrat-Alternates-Bold',
         color: '#80A2C5',
-    },
-    titlePrompt: {
-        width: 300,
-        backgroundColor: '#fff',
-        height: 'auto',
-        paddingBottom: 15,
-        paddingTop: 100,
-        fontWeight: '600',
-    },
-    p1: {
-        fontSize: 18,
-    },
-    bold: {
-        fontFamily: 'Montserrat-Alternates-Bold'
-    },
-    reflectionBox: {
-        height: 100,
-        borderWidth: 0,
-        margin: 'auto',
-        padding: 30,
-        fontFamily: 'Montserrat-Alternates',
-        textAlignVertical: 'top'
-    },
-    titleBox: {
-        height: 100,
-        borderWidth: 0,
-        margin: 'auto',
-        padding: 30,
-        fontFamily: 'Montserrat-Alternates',
-        textAlignVertical: 'top'
-    },
-    moodButtonBox: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'space-evenly',
-        alignItems: 'center',
-        width: 150
+        paddingBottom: 30
     },
     buttonContainer: {
         paddingTop: 25,

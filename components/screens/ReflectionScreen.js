@@ -15,8 +15,6 @@ export default function ReflectionScreen( {route, navigation} ) {
 
     // mood is passed in with navigation object from MoodScreen.js, reference with 'route.params.mood'
 
-
-
     const DismissKeyboard = ({ children }) => (
         <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
             {children}
@@ -68,7 +66,7 @@ export default function ReflectionScreen( {route, navigation} ) {
         <View style={styles.reflectionView}>
             <Text style={styles.title}>{curDate}</Text>
             <ReflectionInput onChange={onChangeReflectionTitle} inputText={reflectionTitle} numberOfLines={1} placeholder={"Enter Title..."}/>
-            <ReflectionInput onChange={onChangeReflectionText} inputText={reflectionText} numberOfLines={20} placeholder={"Today was a pretty good day!"}/>
+            <ReflectionInput  onChange={onChangeReflectionText} inputText={reflectionText} numberOfLines={20} placeholder={"Today was a pretty good day!"}/>
             <View style={styles.buttonContainer}>
                 <WidePillButton
                     title="Done"

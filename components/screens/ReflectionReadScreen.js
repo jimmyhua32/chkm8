@@ -1,5 +1,6 @@
 import React, {useMemo, useState} from "react";
-import {View, Text, Button, StyleSheet, TextInput} from 'react-native';
+import {View, Text, Image, StyleSheet} from 'react-native';
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 export default function ReflectionReadScreen(props) {
 
@@ -27,25 +28,29 @@ export default function ReflectionReadScreen(props) {
     return (
         <View style={styles.previewContainer}>
             <Text style={styles.title}>{dateString}</Text>
+            <View style={styles.whiteBackground}>
+                <Text style={styles.p1}>{body}</Text>
+            </View>
             <View style={styles.btnContainer}>
-                <Button style={styles.left} title='left' onPress={
+                <TouchableOpacity style={styles.left} onPress={
                     () => {
                         if (index < reflections.length - 1) {
                             setIndex(index + 1);
                         }
                         
                     }
-                }/>
-                <Button style={styles.right} title='right' onPress={
+                }>
+                    <Image source={require('../../assets/left.png')}/>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.right} onPress={
                     () => {
                         if (index > 0) {
                             setIndex(index - 1);
                         }
                     }
-                }/>
-            </View>
-            <View style={styles.whiteBackground}>
-                <Text style={styles.p1}>{body}</Text>
+                }>
+                    <Image source={require('../../assets/right.png')}/>
+                </TouchableOpacity>
             </View>
         </View>
     );
@@ -65,7 +70,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Montserrat-Alternates',
         color: '#80A2C5',
         paddingTop: 100,
-        paddingBottom: 75
+        paddingBottom: '5%'
     },
     p1: {
         fontSize: 18,
@@ -75,17 +80,19 @@ const styles = StyleSheet.create({
         margin: 'auto'
     },
     whiteBackground: {
+        flex: 8,
         backgroundColor: '#fff',
-        borderTopLeftRadius: 20,
-        borderTopRightRadius: 20,
+        borderRadius: 20,
+        marginBottom: '5%',
         width: '100%',
         height: '100%'
     },
     btnContainer: {
+        flex: 1,
         width: '100%',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        paddingHorizontal: '5%',
+        paddingHorizontal: '7%',
         marginBottom: '5%'
     },
     left: {

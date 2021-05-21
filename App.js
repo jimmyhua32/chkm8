@@ -28,15 +28,21 @@ export default function App() {
     const Stack = createStackNavigator();
     LogBox.ignoreAllLogs(true);
 
-    useFonts({'Montserrat-Alternates': require('./assets/fonts/MontserratAlternates-Medium.ttf')});
-    useFonts({'Montserrat-Alternates-Bold': require('./assets/fonts/MontserratAlternates-Bold.ttf')});
+    // useFonts({'Montserrat-Alternates': require('./assets/fonts/MontserratAlternates-Medium.ttf')});
+    // useFonts({'Montserrat-Alternates-Bold': require('./assets/fonts/MontserratAlternates-Bold.ttf')});
 
     // purely for testing
     const clearStorage = async () => {
         console.log("clearing storage");
         await storage.clear();
     }
-    clearStorage();
+    // clearStorage();
+
+    const [loaded] = useFonts({'Montserrat-Alternates': require('./assets/fonts/MontserratAlternates-Medium.ttf')}) && useFonts({'Montserrat-Alternates-Bold': require('./assets/fonts/MontserratAlternates-Bold.ttf')});
+    
+    if (!loaded) {
+        return null;
+    }
 
     const loadData = async () => {
         let isOnboarded = await storage.get('onboarded');
